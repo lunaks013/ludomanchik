@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#1a3050"/>
+    </linearGradient>
+    <linearGradient id="chartBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b6914"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#c9a227"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="560" fill="url(#bg)"/>
+
+  <!-- Chart panel -->
+  <rect x="60" y="50" width="780" height="440" rx="20" fill="url(#chartBg)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Title bar -->
+  <rect x="80" y="70" width="120" height="6" rx="3" fill="#c9a227" opacity="0.6"/>
+  <rect x="80" y="84" width="80" height="4" rx="2" fill="#475569" opacity="0.5"/>
+
+  <!-- Grid -->
+  <line x1="120" y1="450" x2="820" y2="450" stroke="#475569" stroke-width="2"/>
+  <line x1="120" y1="130" x2="120" y2="450" stroke="#475569" stroke-width="2"/>
+  <line x1="120" y1="370" x2="820" y2="370" stroke="#334155" stroke-width="1" stroke-dasharray="6 4"/>
+  <line x1="120" y1="290" x2="820" y2="290" stroke="#334155" stroke-width="1" stroke-dasharray="6 4"/>
+  <line x1="120" y1="210" x2="820" y2="210" stroke="#334155" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- Y-axis ticks -->
+  <line x1="115" y1="370" x2="125" y2="370" stroke="#64748b" stroke-width="2"/>
+  <line x1="115" y1="290" x2="125" y2="290" stroke="#64748b" stroke-width="2"/>
+  <line x1="115" y1="210" x2="125" y2="210" stroke="#64748b" stroke-width="2"/>
+
+  <!-- Player trajectories (faint) -->
+  <polyline points="140,190 230,260 320,220 410,340 500,280 590,380 680,310 770,400 810,360" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.25"/>
+  <polyline points="140,220 230,180 320,300 410,250 500,360 590,300 680,390 770,330 810,410" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.2"/>
+  <polyline points="140,240 230,280 320,240 410,310 500,290 590,350 680,320 770,370 810,390" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.2"/>
+  <polyline points="140,200 230,230 320,270 410,200 500,330 590,270 680,350 770,290 810,380" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.15"/>
+
+  <!-- Average line (declining - house edge) -->
+  <polyline points="140,180 230,210 320,250 410,290 500,320 590,350 680,375 770,395 810,410" fill="none" stroke="url(#goldLine)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Area under average -->
+  <polygon points="140,180 230,210 320,250 410,290 500,320 590,350 680,375 770,395 810,410 810,450 140,450" fill="#c9a227" opacity="0.06"/>
+
+  <!-- Highlight dot -->
+  <circle cx="590" cy="350" r="10" fill="#d4af37" stroke="#fff" stroke-width="2"/>
+  <circle cx="590" cy="350" r="18" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
+
+  <!-- Legend -->
+  <circle cx="680" cy="90" r="6" fill="#d4af37"/>
+  <rect x="696" y="86" width="60" height="4" rx="2" fill="#94a3b8" opacity="0.6"/>
+  <circle cx="680" cy="108" r="6" fill="#3b82f6" opacity="0.4"/>
+  <rect x="696" y="104" width="50" height="4" rx="2" fill="#94a3b8" opacity="0.4"/>
+
+  <!-- Zero line hint -->
+  <line x1="120" y1="250" x2="820" y2="250" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 6" opacity="0.3"/>
+
+  <rect x="360" y="520" width="180" height="5" rx="2.5" fill="#c9a227" opacity="0.45"/>
+</svg>

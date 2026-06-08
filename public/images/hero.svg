@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#1a3050"/>
+    </linearGradient>
+    <linearGradient id="die" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e8ecf2"/>
+    </linearGradient>
+    <filter id="sh">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <!-- Reusable suit shapes -->
+    <path id="heart" d="M0,10 C0,-2 -14,-10 -14,2 C-14,12 0,24 0,32 C0,24 14,12 14,2 C14,-10 0,-2 0,10 Z" fill="#dc2626"/>
+    <path id="spade" d="M0,-18 C-12,-6 -20,4 -12,14 C-6,20 0,16 0,26 C0,16 6,20 12,14 C20,4 12,-6 0,-18 Z M-5,26 L5,26 L4,34 L-4,34 Z" fill="#0f172a"/>
+  </defs>
+  <rect width="1400" height="600" fill="url(#bg)"/>
+
+  <!-- ═══ 1. РУЛЕТКА ═══ -->
+  <g transform="translate(220,300)" filter="url(#sh)">
+    <!-- Золотой обод -->
+    <circle r="105" fill="#8b6914" stroke="#d4af37" stroke-width="5"/>
+    <!-- 18 карманов по кругу (красные/чёрные) -->
+    <g>
+      <g transform="rotate(0)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(20)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(40)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(60)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(80)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(100)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(120)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(140)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(160)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(180)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(200)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(220)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(240)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(260)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(280)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(300)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+      <g transform="rotate(320)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#dc2626"/></g>
+      <g transform="rotate(340)"><rect x="-7" y="-98" width="14" height="26" rx="3" fill="#1e293b"/></g>
+    </g>
+    <!-- Дорожка шарика -->
+    <circle r="72" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+    <!-- Шарик -->
+    <circle cx="50" cy="-40" r="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <!-- Центр -->
+    <circle r="32" fill="#d4af37" stroke="#fff" stroke-width="2"/>
+    <circle r="10" fill="#0a1628"/>
+    <!-- Указатель -->
+    <polygon points="0,-118  -10,-100  10,-100" fill="#d4af37" stroke="#fff" stroke-width="1.5"/>
+  </g>
+
+  <!-- ═══ 2. КОСТИ ═══ -->
+  <g transform="translate(500,300)" filter="url(#sh)">
+    <g transform="translate(-55,0)">
+      <rect x="-60" y="-60" width="120" height="120" rx="18" fill="url(#die)" stroke="#94a3b8" stroke-width="2"/>
+      <circle cx="-32" cy="-32" r="13" fill="#0f172a"/>
+      <circle cx="32" cy="-32" r="13" fill="#0f172a"/>
+      <circle cx="0" cy="0" r="13" fill="#0f172a"/>
+      <circle cx="-32" cy="32" r="13" fill="#0f172a"/>
+      <circle cx="32" cy="32" r="13" fill="#0f172a"/>
+    </g>
+    <g transform="translate(65,8)">
+      <rect x="-60" y="-60" width="120" height="120" rx="18" fill="url(#die)" stroke="#94a3b8" stroke-width="2"/>
+      <circle cx="-32" cy="-32" r="13" fill="#0f172a"/>
+      <circle cx="0" cy="0" r="13" fill="#0f172a"/>
+      <circle cx="32" cy="32" r="13" fill="#0f172a"/>
+    </g>
+  </g>
+
+  <!-- ═══ 3. КАРТЫ ═══ -->
+  <g transform="translate(780,300)" filter="url(#sh)">
+    <!-- Рубашка -->
+    <g transform="rotate(-15)">
+      <rect x="-48" y="-70" width="96" height="140" rx="10" fill="#1e3a5f" stroke="#334155" stroke-width="1.5"/>
+      <rect x="-34" y="-56" width="68" height="112" rx="6" fill="#0f172a" stroke="#c9a227" stroke-width="1.5" opacity="0.5"/>
+    </g>
+    <!-- Туз червей -->
+    <g transform="rotate(0)">
+      <rect x="-48" y="-70" width="96" height="140" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <use href="#heart" transform="translate(0,-10) scale(2.2)"/>
+      <use href="#heart" transform="translate(-30,-48) scale(0.9)"/>
+      <use href="#heart" transform="translate(30,48) scale(0.9)"/>
+    </g>
+    <!-- Туз пик -->
+    <g transform="rotate(15) translate(30,-10)">
+      <rect x="-48" y="-70" width="96" height="140" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <use href="#spade" transform="translate(0,-5) scale(2)"/>
+      <use href="#spade" transform="translate(-30,-48) scale(0.85)"/>
+      <use href="#spade" transform="translate(30,48) scale(0.85)"/>
+    </g>
+  </g>
+
+  <!-- ═══ 4. СЛОТ ═══ -->
+  <g transform="translate(1120,300)" filter="url(#sh)">
+    <!-- Корпус -->
+    <rect x="-110" y="-130" width="220" height="260" rx="22" fill="#c9a227" stroke="#d4af37" stroke-width="3"/>
+    <!-- Экран -->
+    <rect x="-95" y="-110" width="190" height="160" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <!-- 3 барабана -->
+    <rect x="-88" y="-100" width="52" height="140" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <rect x="-26" y="-100" width="52" height="140" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <rect x="36" y="-100" width="52" height="140" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <!-- Вишня 1 -->
+    <circle cx="-62" cy="-30" r="18" fill="#dc2626"/>
+    <circle cx="-70" cy="-38" r="16" fill="#ef4444"/>
+    <path d="M-62 -52 Q-55 -62 -48 -66" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Вишня 2 -->
+    <circle cx="0" cy="-30" r="18" fill="#dc2626"/>
+    <circle cx="-8" cy="-38" r="16" fill="#ef4444"/>
+    <path d="M0 -52 Q7 -62 14 -66" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Семёрка -->
+    <path d="M50 -55 L78 -55 L58 -10 L86 -10" stroke="#d4af37" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Линия выигрыша -->
+    <line x1="-92" y1="-30" x2="92" y2="-30" stroke="#d4af37" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+    <!-- Рычаг -->
+    <rect x="108" y="-60" width="14" height="80" rx="7" fill="#94a3b8"/>
+    <circle cx="115" cy="-72" r="18" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+    <!-- Кнопка -->
+    <rect x="-60" y="70" width="120" height="36" rx="18" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+  </g>
+
+  <!-- Разделители -->
+  <line x1="360" y1="120" x2="360" y2="480" stroke="#c9a227" stroke-width="1" opacity="0.12"/>
+  <line x1="640" y1="120" x2="640" y2="480" stroke="#c9a227" stroke-width="1" opacity="0.12"/>
+  <line x1="920" y1="120" x2="920" y2="480" stroke="#c9a227" stroke-width="1" opacity="0.12"/>
+</svg>

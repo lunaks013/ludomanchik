@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#1a3050"/>
+    </linearGradient>
+    <filter id="sh">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <g filter="url(#sh)">
+    <!-- ?????? ???????? -->
+    <rect x="120" y="40" width="560" height="400" rx="30" fill="#c9a227" stroke="#d4af37" stroke-width="4"/>
+    <!-- ??????? ?????? -->
+    <rect x="140" y="58" width="520" height="36" rx="18" fill="#0a1628" opacity="0.3"/>
+    <!-- ????? -->
+    <rect x="150" y="110" width="500" height="240" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+
+    <!-- 3 ???????? -->
+    <rect x="168" y="128" width="140" height="204" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <rect x="330" y="128" width="140" height="204" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <rect x="492" y="128" width="140" height="204" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+
+    <!-- ??????? 1: ????? -->
+    <circle cx="238" cy="210" r="36" fill="#dc2626"/>
+    <circle cx="222" cy="194" r="34" fill="#ef4444"/>
+    <path d="M238 162 Q248 146 262 140" stroke="#16a34a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="264" cy="139" rx="10" ry="7" fill="#16a34a"/>
+
+    <!-- ??????? 2: ????? -->
+    <circle cx="400" cy="210" r="36" fill="#dc2626"/>
+    <circle cx="384" cy="194" r="34" fill="#ef4444"/>
+    <path d="M400 162 Q410 146 424 140" stroke="#16a34a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="426" cy="139" rx="10" ry="7" fill="#16a34a"/>
+
+    <!-- ??????? 3: ??????? -->
+    <path d="M530 175 L580 175 L548 240 L598 240" stroke="#d4af37" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- ????? ???????? -->
+    <line x1="158" y1="220" x2="642" y2="220" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="10 6" opacity="0.65"/>
+
+    <!-- ????? -->
+    <rect x="690" y="150" width="24" height="140" rx="12" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="702" cy="136" r="32" fill="#dc2626" stroke="#fff" stroke-width="3"/>
+
+    <!-- ?????? SPIN -->
+    <rect x="270" y="370" width="260" height="50" rx="25" fill="#dc2626" stroke="#fff" stroke-width="2.5"/>
+    <!-- ??????? ?? ?????? (??? ??????) -->
+    <rect x="370" y="388" width="60" height="14" rx="7" fill="#fff" opacity="0.35"/>
+  </g>
+</svg>
