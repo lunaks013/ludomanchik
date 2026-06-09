@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { ExcitementLog } from "../components/ExcitementLog";
 import { MechanismCompare } from "../components/MechanismCompare";
 import { PageHeader } from "../components/PageHeader";
+import { SiteImage } from "../components/SiteImage";
 import { StatCard } from "../components/StatCard";
 import { useGameContext } from "../context/GameContext";
+import { IMAGES } from "../lib/images";
 import { MECHANISMS } from "../lib/mechanisms";
 import { compareAllMechanisms, MONTE_CARLO_ITERATIONS } from "../lib/monteCarlo";
 import type { MechanismComparison } from "../types";
@@ -45,6 +47,13 @@ export function ResultsPage() {
         label="Сводка результатов"
         title="Итоги анализа"
         description="Сравнение всех 4 механизмов рандома. Какой бы генератор ни использовался — средний профит отрицательный."
+      />
+
+      <SiteImage
+        src={IMAGES.analytics}
+        alt="Сводка результатов"
+        className="illustration-banner mb-8 md:min-h-[200px]"
+        aspect="banner"
       />
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">

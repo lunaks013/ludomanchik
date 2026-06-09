@@ -1,6 +1,8 @@
 import { MECHANISMS } from "../lib/mechanisms";
+import { MECHANISM_IMAGES } from "../lib/images";
 import { useGameContext } from "../context/GameContext";
 import type { MechanismId } from "../types";
+import { SiteImage } from "./SiteImage";
 
 const TAB_IDS: MechanismId[] = ["prng", "xorshift", "fisherYates", "weighted"];
 
@@ -30,6 +32,12 @@ export function GamePanel() {
           );
         })}
       </div>
+
+      <SiteImage
+        src={MECHANISM_IMAGES[activeMechanism]}
+        alt={`Модель ${info.gameShell}`}
+        className="game-preview-img"
+      />
 
       <div className="glass p-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-4 border-b border-ozon-border pb-5">

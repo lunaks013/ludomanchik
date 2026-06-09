@@ -1,25 +1,31 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../components/PageHeader";
 import { SectionHeader } from "../components/SectionHeader";
+import { SiteImage } from "../components/SiteImage";
+import { IMAGES } from "../lib/images";
 import { MECHANISM_LIST } from "../lib/mechanisms";
 import { MONTE_CARLO_ITERATIONS } from "../lib/monteCarlo";
 
 const points = [
   {
     title: "Иллюзия контроля",
-    text: "Участник выбирает параметры ставки и момент пополнения, что создаёт ощущение влияния на результат. Генератор случайных чисел этого не допускает.",
+    text: "Участник выбирает ставку и момент пополнения — кажется, что результат от него зависит. RNG этого не меняет.",
+    image: IMAGES.psychology,
   },
   {
-    title: "Повторное пополнение",
-    text: "После серии неудачных исходов фиксируется стремление внести дополнительные средства — один из ключевых поведенческих маркеров лудомании.",
+    title: "Пополнение баланса",
+    text: "После неудачных исходов фиксируется стремление внести дополнительные средства — поведенческий маркер лудомании.",
+    image: IMAGES.analytics,
   },
   {
-    title: "Эффект near-miss",
-    text: "Близкий к выигрышу исход (например, два совпавших символа из трёх) усиливает мотивацию продолжать участие.",
+    title: "Near-miss",
+    text: "Близкий к выигрышу исход создаёт ощущение «почти получилось» и усиливает мотивацию продолжать.",
+    image: IMAGES.analytics,
   },
   {
-    title: "Независимость от реализации RNG",
-    text: "При смене алгоритма генерации случайных чисел математическое ожидание остаётся отрицательным для участника.",
+    title: "Независимость от RNG",
+    text: "При смене алгоритма генерации случайных чисел математическое ожидание остаётся отрицательным.",
+    image: IMAGES.analytics,
   },
 ];
 
@@ -32,17 +38,21 @@ export function TheoryPage() {
         description="Исследование математических и поведенческих аспектов участия в азартных играх."
       />
 
-      <section className="mb-12">
-        <SectionHeader
-          title="Ключевые положения"
-          description="Тезисы, подтверждаемые в ходе практической части"
-        />
-        <div className="grid gap-4 sm:grid-cols-2">
-          {points.map((p, i) => (
+      <SiteImage
+        src={IMAGES.psychology}
+        alt="Нейробиология зависимости"
+        className="illustration-banner mb-10 md:min-h-[280px]"
+        aspect="banner"
+      />
+
+      <section className="mb-14">
+        <SectionHeader title="Ключевые положения" description="Тезисы, подтверждаемые в практической части" />
+        <div className="grid gap-6 sm:grid-cols-2">
+          {points.map((p) => (
             <article key={p.title} className="topic-card">
+              <SiteImage src={p.image} alt={p.title} className="topic-card-img" />
               <div className="topic-card-body">
-                <span className="topic-card-num">{i + 1}</span>
-                <h3 className="text-base font-semibold text-ozon-text">{p.title}</h3>
+                <h3 className="text-lg font-bold text-ozon-text">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ozon-muted">{p.text}</p>
               </div>
             </article>
@@ -50,7 +60,7 @@ export function TheoryPage() {
         </div>
       </section>
 
-      <section className="mb-12">
+      <section className="mb-14">
         <SectionHeader title="Механизмы генерации случайных чисел" />
         <div className="glass overflow-hidden">
           <table>
@@ -68,7 +78,7 @@ export function TheoryPage() {
                   <td className="font-semibold">{m.label}</td>
                   <td className="text-ozon-muted">{m.technicalName}</td>
                   <td className="text-ozon-muted">{m.gameShell}</td>
-                  <td className="text-right font-medium text-neg">−{m.houseEdge}%</td>
+                  <td className="text-right font-bold text-neg">−{m.houseEdge}%</td>
                 </tr>
               ))}
             </tbody>
@@ -76,24 +86,23 @@ export function TheoryPage() {
         </div>
       </section>
 
-      <section className="mb-10">
-        <div className="glass p-6 md:p-8">
+      <section className="split-section mb-14">
+        <div className="glass p-8">
           <h2 className="heading-lg mb-3">Метод Монте-Карло</h2>
           <p className="text-sm leading-relaxed text-ozon-muted">
-            Для каждого механизма выполняется{" "}
+            Для каждого механизма —{" "}
             <strong className="text-ozon-text">{MONTE_CARLO_ITERATIONS} независимых сессий</strong> с
-            идентичными начальными параметрами. Сравниваются средний итоговый баланс, доля
-            «банкротств» и частота положительных исходов.
+            одинаковыми параметрами. Сравниваются средний баланс, доля банкротств и частота положительных исходов.
           </p>
         </div>
+        <SiteImage src={IMAGES.analytics} alt="Монте-Карло" className="split-section-img" aspect="card" />
       </section>
 
       <section className="mb-10">
         <div className="quote-block">
-          <p className="text-sm leading-relaxed md:text-base">
-            Математическое ожидание отрицательно независимо от выбранного алгоритма RNG.
-            Поведенческие факторы усиливают субъективное ощущение контроля и поддерживают
-            цикл зависимого поведения.
+          <p className="text-base leading-relaxed">
+            Математическое ожидание отрицательно при любом RNG. Поведенческие факторы
+            усиливают иллюзию контроля и поддерживают цикл лудомании.
           </p>
         </div>
       </section>

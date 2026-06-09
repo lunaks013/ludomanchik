@@ -1,36 +1,33 @@
-import { ArrowRight, BarChart3, Dices, Layers, Shuffle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import type { MechanismId, MechanismInfo } from "../types";
-
-const ICONS: Record<MechanismId, typeof Dices> = {
-  prng: Shuffle,
-  xorshift: Dices,
-  fisherYates: Layers,
-  weighted: BarChart3,
-};
+import type { MechanismInfo } from "../types";
+import { MECHANISM_IMAGES } from "../lib/images";
+import { SiteImage } from "./SiteImage";
 
 interface MechanismCardProps {
   mechanism: MechanismInfo;
 }
 
 export function MechanismCard({ mechanism }: MechanismCardProps) {
-  const Icon = ICONS[mechanism.id];
+  const image = MECHANISM_IMAGES[mechanism.id];
 
   return (
     <Link to="/games" className="mechanism-card group no-underline">
-      <div className="mechanism-card-header">
-        <div className="mechanism-card-icon">
-          <Icon className="h-6 w-6" />
+      <div className="mechanism-card-img-wrap">
+        <SiteImage
+          src={image}
+          alt={`Модель ${mechanism.gameShell}`}
+          className="mechanism-card-img h-full"
+        />
+        <div className="mechanism-card-overlay">
+          <h3 className="text-xl font-bold text-white">{mechanism.gameShell}</h3>
+          <p className="text-sm text-white/80">{mechanism.label}</p>
         </div>
-        <div className="flex-1">
-          <h3 className="font-bold text-ozon-text">{mechanism.label}</h3>
-          <p className="text-sm text-ozon-muted">Модель: {mechanism.gameShell}</p>
-        </div>
-        <span className="mechanism-card-edge">−{mechanism.houseEdge}%</span>
+        <span className="mechanism-card-badge">−{mechanism.houseEdge}%</span>
       </div>
       <div className="mechanism-card-body">
         <p className="text-sm text-ozon-muted">{mechanism.technicalName}</p>
-        <p className="mt-3 flex items-center gap-1 text-sm font-medium text-accent">
+        <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-accent">
           Открыть в программе
           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
         </p>

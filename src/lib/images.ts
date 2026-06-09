@@ -1,11 +1,11 @@
 import type { MechanismId } from "../types";
 
 const base = import.meta.env.BASE_URL;
-const v = "5";
+const v = "6";
 
-/** Фотографии для дипломной работы — локальные JPG */
+/** Иллюстрации для дипломной работы */
 export const IMAGES = {
-  hero: `${base}images/hero.jpg?v=${v}`,
+  hero: `${base}images/analytics.jpg?v=${v}`,
   psychology: `${base}images/psychology.jpg?v=${v}`,
   roulette: `${base}images/roulette.jpg?v=${v}`,
   dice: `${base}images/dice.jpg?v=${v}`,
