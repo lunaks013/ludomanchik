@@ -4,14 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: "#0a1628",
-        "navy-light": "#132238",
-        gold: "#c9a227",
-        "gold-hover": "#b08d1e",
+        navy: "#1e293b",
+        "navy-light": "#334155",
+        accent: "#2563eb",
+        "accent-hover": "#1d4ed8",
+        gold: "#2563eb",
         ozon: {
-          blue: "#1e3a5f",
+          blue: "#1e40af",
           pink: "#dc2626",
-          bg: "#f0f2f6",
+          bg: "#f8fafc",
           card: "#ffffff",
           text: "#0f172a",
           muted: "#64748b",
@@ -28,12 +29,12 @@ export default {
         ],
       },
       borderRadius: {
-        card: "16px",
-        btn: "10px",
+        card: "8px",
+        btn: "6px",
       },
       boxShadow: {
-        card: "0 4px 24px rgba(10, 22, 40, 0.08)",
-        lift: "0 12px 40px rgba(10, 22, 40, 0.12)",
+        card: "0 1px 3px rgba(15, 23, 42, 0.06)",
+        lift: "0 4px 12px rgba(15, 23, 42, 0.08)",
       },
     },
   },

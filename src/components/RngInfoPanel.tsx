@@ -17,9 +17,9 @@ export function RngInfoPanel({ mechanism }: RngInfoPanelProps) {
         {info.implementation}
       </pre>
       <p className="mt-3 text-xs text-ozon-muted">
-        Edge казино: <span className="font-medium text-neg">−{info.houseEdge}%</span>
+        Мат. ожидание: <span className="font-medium text-neg">−{info.houseEdge}%</span>
         {" · "}
-        Винрейт: {info.theoreticalWinRate.toFixed(1)}%
+        Частота положительных исходов: {info.theoreticalWinRate.toFixed(1)}%
       </p>
     </div>
   );

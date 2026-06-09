@@ -1,8 +1,6 @@
 import { MECHANISMS } from "../lib/mechanisms";
-import { MECHANISM_IMAGES } from "../lib/images";
 import { useGameContext } from "../context/GameContext";
 import type { MechanismId } from "../types";
-import { SiteImage } from "./SiteImage";
 
 const TAB_IDS: MechanismId[] = ["prng", "xorshift", "fisherYates", "weighted"];
 
@@ -33,17 +31,11 @@ export function GamePanel() {
         })}
       </div>
 
-      <SiteImage
-        src={MECHANISM_IMAGES[activeMechanism]}
-        alt={`Игра: ${info.gameShell}`}
-        className="game-preview-img"
-      />
-
       <div className="glass p-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-4 border-b border-ozon-border pb-5">
           <div>
-            <h2 className="text-xl font-bold text-ozon-text">{info.gameShell}</h2>
-            <p className="text-sm text-gold">{info.technicalName}</p>
+            <h2 className="text-xl font-bold text-ozon-text">Модель: {info.gameShell}</h2>
+            <p className="text-sm text-accent">{info.technicalName}</p>
           </div>
           <div className="text-right">
             <p className="text-xs text-ozon-muted">Баланс</p>
@@ -91,14 +83,14 @@ export function GamePanel() {
             />
           </label>
           <button type="button" disabled={!canPlay} onClick={playGame} className="btn-primary disabled:opacity-40">
-            Играть
+            Симуляция
           </button>
           <button type="button" onClick={() => topUp(500)} className="btn-outline">
-            Пополнить +500 ₽
+            Пополнение +500 ₽
           </button>
         </div>
         <p className="mt-4 text-xs text-ozon-muted">
-          Пополнение баланса — триггер азарта «отыграюсь». Записывается в журнал.
+          Пополнение баланса фиксируется в журнале как поведенческий маркер.
         </p>
       </div>
     </div>

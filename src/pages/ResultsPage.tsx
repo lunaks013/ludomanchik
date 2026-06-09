@@ -3,10 +3,8 @@ import { useEffect, useState } from "react";
 import { ExcitementLog } from "../components/ExcitementLog";
 import { MechanismCompare } from "../components/MechanismCompare";
 import { PageHeader } from "../components/PageHeader";
-import { SiteImage } from "../components/SiteImage";
 import { StatCard } from "../components/StatCard";
 import { useGameContext } from "../context/GameContext";
-import { IMAGES } from "../lib/images";
 import { MECHANISMS } from "../lib/mechanisms";
 import { compareAllMechanisms, MONTE_CARLO_ITERATIONS } from "../lib/monteCarlo";
 import type { MechanismComparison } from "../types";
@@ -49,16 +47,9 @@ export function ResultsPage() {
         description="Сравнение всех 4 механизмов рандома. Какой бы генератор ни использовался — средний профит отрицательный."
       />
 
-      <SiteImage
-        src={IMAGES.analytics}
-        alt="Сводка результатов"
-        className="illustration-banner mb-8 md:min-h-[224px]"
-        aspect="banner"
-      />
-
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
         <StatCard title="Пополнений баланса" value={String(totalTopUps)} hint="триггер «отыграюсь»" />
-        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем играм" />
+        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем моделям" />
       </div>
 
       {lastResult ? (
@@ -99,8 +90,8 @@ export function ResultsPage() {
             <thead>
               <tr>
                 <th>Механизм</th>
-                <th>Игра</th>
-                <th className="text-right">Edge</th>
+                <th>Модель</th>
+                <th className="text-right">Мат. ожидание</th>
                 <th className="text-right">Профит</th>
                 <th className="hidden text-right sm:table-cell">Банкротство</th>
               </tr>

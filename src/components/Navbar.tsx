@@ -14,12 +14,12 @@ export function Navbar() {
 
   return (
     <header className="site-navbar fixed left-0 right-0 top-0 z-50">
-      <div className="mx-auto flex h-[58px] max-w-6xl items-stretch px-4 md:px-6">
-        <NavLink to="/" className="flex items-center gap-2 no-underline">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold text-sm font-black text-navy">
+      <div className="mx-auto flex h-[52px] max-w-6xl items-stretch px-4 md:px-6">
+        <NavLink to="/" className="flex items-center gap-2.5 no-underline">
+          <span className="flex h-7 w-7 items-center justify-center rounded bg-accent text-xs font-bold text-white">
             А
           </span>
-          <span className="text-sm font-bold text-white">
+          <span className="text-sm font-semibold text-ozon-text">
             Анализ гемблинга
           </span>
         </NavLink>
@@ -39,13 +39,9 @@ export function Navbar() {
           ))}
         </nav>
 
-        <NavLink to="/games" className="btn-primary my-2 hidden !px-4 !py-2 text-xs md:inline-flex">
-          Демо
-        </NavLink>
-
         <button
           type="button"
-          className="ml-auto flex h-10 w-10 items-center justify-center text-white md:ml-0 md:hidden"
+          className="ml-auto flex h-10 w-10 items-center justify-center text-ozon-muted md:ml-0 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Меню"
         >
@@ -54,7 +50,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <nav className="border-t border-white/10 bg-navy-light px-4 py-3 md:hidden">
+        <nav className="border-t border-ozon-border bg-white px-4 py-3 md:hidden">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -62,15 +58,12 @@ export function Navbar() {
               end={l.end}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block py-2.5 text-sm no-underline ${isActive ? "font-semibold text-gold" : "text-white/70"}`
+                `block py-2.5 text-sm no-underline ${isActive ? "font-semibold text-accent" : "text-ozon-muted"}`
               }
             >
               {l.label}
             </NavLink>
           ))}
-          <NavLink to="/games" onClick={() => setOpen(false)} className="btn-primary mt-3 w-full text-center text-sm">
-            Демо
-          </NavLink>
         </nav>
       )}
     </header>
