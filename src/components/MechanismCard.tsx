@@ -16,7 +16,7 @@ export function MechanismCard({ mechanism }: MechanismCardProps) {
       <div className="mechanism-card-img-wrap">
         <SiteImage
           src={image}
-          alt={`Модель ${mechanism.gameShell}`}
+          alt={`${mechanism.gameShell} — ${mechanism.label}`}
           className="mechanism-card-img h-full"
         />
         <div className="mechanism-card-overlay">
@@ -27,7 +27,7 @@ export function MechanismCard({ mechanism }: MechanismCardProps) {
       </div>
       <div className="mechanism-card-body">
         <p className="text-sm text-ozon-muted">{mechanism.technicalName}</p>
-        <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-accent">
+        <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-gold">
           Открыть в программе
           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
         </p>

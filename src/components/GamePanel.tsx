@@ -35,15 +35,15 @@ export function GamePanel() {
 
       <SiteImage
         src={MECHANISM_IMAGES[activeMechanism]}
-        alt={`Модель ${info.gameShell}`}
+        alt={`Игра: ${info.gameShell}`}
         className="game-preview-img"
       />
 
       <div className="glass p-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-4 border-b border-ozon-border pb-5">
           <div>
-            <h2 className="text-xl font-bold text-ozon-text">Модель: {info.gameShell}</h2>
-            <p className="text-sm text-accent">{info.technicalName}</p>
+            <h2 className="text-xl font-bold text-ozon-text">{info.gameShell}</h2>
+            <p className="text-sm text-gold">{info.technicalName}</p>
           </div>
           <div className="text-right">
             <p className="text-xs text-ozon-muted">Баланс</p>
@@ -91,14 +91,14 @@ export function GamePanel() {
             />
           </label>
           <button type="button" disabled={!canPlay} onClick={playGame} className="btn-primary disabled:opacity-40">
-            Симуляция
+            Играть
           </button>
           <button type="button" onClick={() => topUp(500)} className="btn-outline">
-            Пополнение +500 ₽
+            Пополнить +500 ₽
           </button>
         </div>
         <p className="mt-4 text-xs text-ozon-muted">
-          Пополнение баланса фиксируется в журнале как поведенческий маркер.
+          Пополнение баланса — триггер азарта «отыграюсь». Записывается в журнал.
         </p>
       </div>
     </div>

@@ -9,22 +9,22 @@ import { MONTE_CARLO_ITERATIONS } from "../lib/monteCarlo";
 const points = [
   {
     title: "Иллюзия контроля",
-    text: "Участник выбирает ставку и момент пополнения — кажется, что результат от него зависит. RNG этого не меняет.",
-    image: IMAGES.psychology,
+    text: "Игрок выбирает ставку и момент пополнения — кажется, что результат от него зависит. RNG этого не меняет.",
+    image: IMAGES.chips,
   },
   {
     title: "Пополнение баланса",
-    text: "После неудачных исходов фиксируется стремление внести дополнительные средства — поведенческий маркер лудомании.",
-    image: IMAGES.analytics,
+    text: "После проигрыша игрок вносит ещё деньги в надежде «отыграться» — ключевой триггер лудомании.",
+    image: IMAGES.wallet,
   },
   {
     title: "Near-miss",
-    text: "Близкий к выигрышу исход создаёт ощущение «почти получилось» и усиливает мотивацию продолжать.",
-    image: IMAGES.analytics,
+    text: "Два совпавших символа в слоте создают ощущение «почти выиграл» и подталкивают продолжать.",
+    image: IMAGES.slot,
   },
   {
-    title: "Независимость от RNG",
-    text: "При смене алгоритма генерации случайных чисел математическое ожидание остаётся отрицательным.",
+    title: "Любой RNG — один итог",
+    text: "4 разных механизма, 4 разные игры — матожидание всегда отрицательное.",
     image: IMAGES.analytics,
   },
 ];
@@ -35,18 +35,18 @@ export function TheoryPage() {
       <PageHeader
         label="Теоретическая часть"
         title="Гемблинг и лудомания"
-        description="Исследование математических и поведенческих аспектов участия в азартных играх."
+        description="Независимо от технической реализации генератора случайных чисел игрок на дистанции в проигрыше."
       />
 
       <SiteImage
         src={IMAGES.psychology}
         alt="Нейробиология зависимости"
-        className="illustration-banner mb-10 md:min-h-[280px]"
+        className="illustration-banner mb-10 md:min-h-[320px]"
         aspect="banner"
       />
 
       <section className="mb-14">
-        <SectionHeader title="Ключевые положения" description="Тезисы, подтверждаемые в практической части" />
+        <SectionHeader title="Ключевые положения" description="Четыре тезиса, которые демонстрирует программа" />
         <div className="grid gap-6 sm:grid-cols-2">
           {points.map((p) => (
             <article key={p.title} className="topic-card">
@@ -61,15 +61,15 @@ export function TheoryPage() {
       </section>
 
       <section className="mb-14">
-        <SectionHeader title="Механизмы генерации случайных чисел" />
+        <SectionHeader title="Механизмы рандома" />
         <div className="glass overflow-hidden">
           <table>
             <thead>
               <tr>
                 <th>Механизм</th>
                 <th>Реализация</th>
-                <th>Модель</th>
-                <th className="text-right">Мат. ожидание</th>
+                <th>Игра</th>
+                <th className="text-right">Edge</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@ export function TheoryPage() {
           <p className="text-sm leading-relaxed text-ozon-muted">
             Для каждого механизма —{" "}
             <strong className="text-ozon-text">{MONTE_CARLO_ITERATIONS} независимых сессий</strong> с
-            одинаковыми параметрами. Сравниваются средний баланс, доля банкротств и частота положительных исходов.
+            одинаковыми параметрами. Сравниваются средний баланс, доля банкротств и винрейт.
           </p>
         </div>
         <SiteImage src={IMAGES.analytics} alt="Монте-Карло" className="split-section-img" aspect="card" />
@@ -100,14 +100,14 @@ export function TheoryPage() {
 
       <section className="mb-10">
         <div className="quote-block">
-          <p className="text-base leading-relaxed">
-            Математическое ожидание отрицательно при любом RNG. Поведенческие факторы
+          <p className="text-lg leading-relaxed">
+            Математическое ожидание отрицательное при любом RNG. Психологические триггеры
             усиливают иллюзию контроля и поддерживают цикл лудомании.
           </p>
         </div>
       </section>
 
-      <Link to="/games" className="btn-primary">Перейти к программе</Link>
+      <Link to="/games" className="btn-primary">Открыть программу</Link>
     </div>
   );
 }

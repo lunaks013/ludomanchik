@@ -52,13 +52,13 @@ export function ResultsPage() {
       <SiteImage
         src={IMAGES.analytics}
         alt="Сводка результатов"
-        className="illustration-banner mb-8 md:min-h-[200px]"
+        className="illustration-banner mb-8 md:min-h-[224px]"
         aspect="banner"
       />
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
         <StatCard title="Пополнений баланса" value={String(totalTopUps)} hint="триггер «отыграюсь»" />
-        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем моделям" />
+        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем играм" />
       </div>
 
       {lastResult ? (
@@ -99,8 +99,8 @@ export function ResultsPage() {
             <thead>
               <tr>
                 <th>Механизм</th>
-                <th>Модель</th>
-                <th className="text-right">Мат. ожидание</th>
+                <th>Игра</th>
+                <th className="text-right">Edge</th>
                 <th className="text-right">Профит</th>
                 <th className="hidden text-right sm:table-cell">Банкротство</th>
               </tr>

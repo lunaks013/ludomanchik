@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, Brain, Code2, FileText } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, Code2, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeroBanner } from "../components/HeroBanner";
 import { MechanismCard } from "../components/MechanismCard";
@@ -8,22 +8,22 @@ import { IMAGES } from "../lib/images";
 import { MECHANISM_LIST } from "../lib/mechanisms";
 
 const steps = [
-  "Продемонстрировать 4 механизма RNG и их программную реализацию",
-  "Провести симуляции в каждой модели, зафиксировать поведенческие события в журнале",
-  "Выполнить анализ Монте-Карло и сформировать сводку результатов",
+  "Показать 4 механизма рандома и их техническую реализацию",
+  "Сыграть в каждую оболочку, пополнить баланс — показать журнал азарта",
+  "Запустить Монте-Карло и сравнить итоги по всем механизмам",
 ];
 
 const features = [
-  { icon: Code2, title: "4 механизма RNG", text: "Math.random(), XorShift32, Fisher-Yates, взвешенный выбор" },
-  { icon: Brain, title: "Поведенческий анализ", text: "Пополнение, серии исходов, near-miss — журнал событий" },
-  { icon: BarChart3, title: "Монте-Карло", text: "40 виртуальных сессий на каждый механизм" },
+  { icon: Code2, title: "4 RNG-механизма", text: "Math.random(), XorShift, Fisher-Yates, взвешенный выбор" },
+  { icon: Brain, title: "Психология азарта", text: "Пополнение, серии побед, near-miss — журнал триггеров" },
+  { icon: BarChart3, title: "Монте-Карло", text: "40 виртуальных игроков на каждый механизм" },
 ];
 
 const stats = [
-  { value: "4", label: "механизма RNG" },
-  { value: "4", label: "модели симуляции" },
-  { value: "40", label: "сессий в анализе" },
-  { value: "−2.7%", label: "мин. мат. ожидание", accent: true },
+  { value: "4", label: "механизма рандома" },
+  { value: "4", label: "игровые оболочки" },
+  { value: "40", label: "игроков в анализе" },
+  { value: "−2.7%", label: "мин. edge казино", accent: true },
 ];
 
 export function HomePage() {
@@ -36,7 +36,7 @@ export function HomePage() {
         subtitle="на примере создания собственной программы и сводки результатов"
       >
         <Link to="/games" className="btn-primary">
-          Практическая часть
+          Открыть программу
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link to="/theory" className="btn-secondary">Теория</Link>
@@ -54,8 +54,8 @@ export function HomePage() {
       <section className="mb-14">
         <SectionHeader
           label="Практическая часть"
-          title="Механизмы генерации случайных чисел"
-          description="Каждый механизм реализован отдельно и представлен в виде модели симуляции."
+          title="4 механизма рандома"
+          description="Каждый реализован по-разному и обёрнут в свою игру. Нажмите на карточку — откроется в программе."
         />
         <div className="grid gap-6 sm:grid-cols-2">
           {MECHANISM_LIST.map((m) => (
@@ -70,16 +70,16 @@ export function HomePage() {
           <p className="section-label">О чём работа</p>
           <h2 className="heading-lg mt-2">Математика и психология</h2>
           <p className="body-text mt-4">
-            Программа демонстрирует, что независимо от реализации RNG математическое
-            ожидание отрицательное. Отдельно фиксируются поведенческие факторы лудомании:
-            пополнение баланса, серии исходов и эффект near-miss.
+            Программа демонстрирует, что независимо от реализации RNG матожидание
+            отрицательное. Отдельно фиксируются триггеры лудомании: пополнение баланса
+            после проигрыша, серии побед и near-miss в слоте.
           </p>
-          <Link to="/theory" className="btn-outline mt-6">Теоретическая часть</Link>
+          <Link to="/theory" className="btn-outline mt-6">Читать теорию</Link>
         </div>
       </section>
 
       <section className="mb-14">
-        <SectionHeader title="Методы исследования" />
+        <SectionHeader title="Возможности платформы" />
         <div className="grid gap-5 md:grid-cols-3">
           {features.map((f) => (
             <div key={f.title} className="feature-card">
@@ -96,10 +96,10 @@ export function HomePage() {
       <section className="split-section mb-14">
         <div className="glass p-8">
           <div className="mb-4 flex items-center gap-3">
-            <FileText className="h-6 w-6 text-accent" />
-            <p className="section-label !mb-0">План демонстрации</p>
+            <Shield className="h-6 w-6 text-gold" />
+            <p className="section-label !mb-0">Сценарий защиты</p>
           </div>
-          <h2 className="heading-lg">Сценарий для комиссии</h2>
+          <h2 className="heading-lg">Как показать комиссии</h2>
           <ol className="step-list mt-6">
             {steps.map((text, i) => (
               <li key={i} className="step-item">
@@ -114,9 +114,9 @@ export function HomePage() {
 
       <section className="cta-banner">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent-light">Сводка результатов</p>
-          <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">Программа и итоги анализа</h2>
-          <p className="mt-2 text-sm text-white/75">Симуляция · журнал поведения · Монте-Карло · таблица итогов</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-gold">Готово к защите</p>
+          <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">Запустите программу прямо сейчас</h2>
+          <p className="mt-2 text-sm text-white/70">4 игры · журнал азарта · Монте-Карло · сводка итогов</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Link to="/games" className="btn-primary">Программа</Link>
