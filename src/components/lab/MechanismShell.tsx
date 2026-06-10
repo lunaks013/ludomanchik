@@ -25,46 +25,42 @@ export function MechanismShell() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
         <div>
-          <h2 className="text-lg font-bold text-white">{info.gameShell}</h2>
-          <p className="text-xs text-slate-400">{info.technicalName}</p>
+          <h2 className="text-base font-semibold text-slate-900">{info.gameShell}</h2>
+          <p className="mt-0.5 text-xs text-slate-500">{info.technicalName}</p>
+          <p className="mt-2 max-w-xl text-xs leading-relaxed text-slate-600">{info.description}</p>
         </div>
-        <div className="text-right">
-          <p className="text-xs text-slate-500">Баланс</p>
-          <motion.p
-            key={session.balance}
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            className="text-2xl font-black tabular-nums text-white"
-          >
+        <div className="shrink-0 text-right">
+          <p className="text-xs text-slate-500">Текущий капитал</p>
+          <p className="text-xl font-bold tabular-nums text-slate-900">
             {session.balance.toLocaleString("ru-RU")} ₽
-          </motion.p>
+          </p>
         </div>
       </div>
 
       <div className="mb-4 grid grid-cols-4 gap-2">
         {[
-          { label: "Ставок", val: session.betsPlayed },
-          { label: "Побед", val: session.wins },
-          { label: "Проигр.", val: session.losses },
+          { label: "Итераций", val: session.betsPlayed },
+          { label: "Положит.", val: session.wins },
+          { label: "Отрицат.", val: session.losses },
           { label: "Серия −", val: session.consecutiveLosses },
         ].map((s) => (
           <div key={s.label} className="lab-stat-pill">
-            <p className="text-[10px] uppercase tracking-wider text-slate-500">{s.label}</p>
-            <p className="text-lg font-bold text-white">{s.val}</p>
+            <p className="text-[10px] uppercase tracking-wide text-slate-500">{s.label}</p>
+            <p className="text-lg font-semibold text-slate-900">{s.val}</p>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-1 items-center justify-center rounded-2xl border border-white/5 bg-slate-900/20 p-6 backdrop-blur-sm">
+      <div className="flex flex-1 items-start">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeMechanism}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="w-full"
           >
             {activeMechanism === "lcg" && (
@@ -94,17 +90,19 @@ export function MechanismShell() {
         </AnimatePresence>
       </div>
 
-      <div className="mt-4 flex gap-3">
-        <motion.button
+      <div className="mt-4 flex gap-3 border-t border-slate-200 pt-4">
+        <button
           type="button"
           disabled={!canPlay}
           onClick={() => void playGame()}
-          whileHover={{ scale: canPlay ? 1.02 : 1 }}
-          whileTap={{ scale: canPlay ? 0.98 : 1 }}
           className="lab-btn-primary flex-1 disabled:opacity-40"
         >
-          {isPlaying ? "Обработка…" : session.balance <= 0 ? "Банкротство" : "Играть"}
-        </motion.button>
+          {isPlaying
+            ? "Выполняется итерация…"
+            : session.balance <= 0
+              ? "Капитал исчерпан"
+              : "Выполнить итерацию"}
+        </button>
       </div>
     </div>
   );

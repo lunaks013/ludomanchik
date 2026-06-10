@@ -3,55 +3,55 @@ import type { MechanismId, MechanismInfo } from "../types";
 export const MECHANISMS: Record<MechanismId, MechanismInfo> = {
   lcg: {
     id: "lcg",
-    label: "LCG PRNG",
+    label: "Механизм I — LCG PRNG",
     technicalName: "Линейный конгруэнтный генератор (LCG)",
-    gameShell: "Ретро-слоты",
+    gameShell: "Модуль I: трёхкомпонентная выборка LCG",
     description:
-      "Кастомный seedable LCG с тремя барабанами. Демонстрирует статистическое поведение стандартных PRNG-алгоритмов на больших выборках.",
+      "Seedable LCG генерирует три последовательных значения. Исследуется статистическое поведение стандартных PRNG на длинных сериях.",
     implementation: "state = (1664525 × state + 1013904223) mod 2³²",
     houseEdge: 12,
     theoreticalWinRate: 22.4,
     researchFocus:
-      "Показывает, как стандартные алгоритмы псевдослучайности ведут себя при длительных сериях — без изменения отрицательного матожидания.",
+      "Демонстрация того, что стандартный PRNG не изменяет отрицательное математическое ожидание при длительных сериях.",
   },
   csprng: {
     id: "csprng",
-    label: "CSPRNG",
+    label: "Механизм II — CSPRNG",
     technicalName: "Криптографически стойкий ГПСЧ (Web Crypto API)",
-    gameShell: "Квантовый Crash",
+    gameShell: "Модуль II: экспоненциальная модель CSPRNG",
     description:
-      "Crash-игра с точкой обрыва, генерируемой через crypto.getRandomValues. Математически идеальная энтропия не компенсирует house edge.",
-    implementation: "crypto.getRandomValues(Uint32Array) → crash = (1−ε)/U",
+      "Точка прекращения роста генерируется через crypto.getRandomValues. Исследуется влияние криптостойкой энтропии на итоговый результат.",
+    implementation: "crypto.getRandomValues(Uint32Array) → t = (1−ε)/U",
     houseEdge: 4,
     theoreticalWinRate: 48,
     researchFocus:
-      "Доказывает, что даже «квантовая» криптостойкая случайность не спасает от отрицательного матожидания.",
+      "Проверка гипотезы: криптографически стойкая случайность не компенсирует отрицательное матожидание.",
   },
   weightedWheel: {
     id: "weightedWheel",
-    label: "Weighted RNG",
-    technicalName: "Динамическая RTP-матрица с near-miss",
-    gameShell: "Кибер-колесо фортуны",
+    label: "Механизм III — Weighted RNG",
+    technicalName: "Взвешенное секторное распределение (near-miss)",
+    gameShell: "Модуль III: секторное распределение с near-miss",
     description:
-      "Сектора с весами и инженерным размещением проигрышных зон рядом с джекпотом для усиления дофаминового отклика.",
-    implementation: "r -= weight[i]; if (r ≤ 0) → sector[i]; nearMiss = adj(jackpot)",
+      "Взвешенный выбор сектора с инженерным размещением исходов, провоцирующим эффект «почти выигрыш» (near-miss).",
+    implementation: "r -= weight[i]; if (r ≤ 0) → sector[i]",
     houseEdge: 12,
     theoreticalWinRate: 31,
     researchFocus:
-      "Демонстрирует near-miss эффект: высокоценные проигрышные сектора непосредственно рядом с выигрышными.",
+      "Анализ near-miss эффекта как фактора усиления субъективной мотивации к продолжению серии.",
   },
   provablyFair: {
     id: "provablyFair",
-    label: "Provably Fair",
+    label: "Механизм IV — Provably Fair",
     technicalName: "SHA-256(serverSeed + clientSeed + nonce)",
-    gameShell: "Криптографические кости",
+    gameShell: "Модуль IV: верифицируемый криптографический исход",
     description:
-      "100% прозрачный алгоритм: хеш исхода верифицируется до броска. Даже без обмана отрицательное матожидание уничтожает банкролл.",
+      "Полностью прозрачный алгоритм: хеш исхода верифицируется до выполнения итерации. Исключается фактор скрытого манипулирования.",
     implementation: "roll = parseInt(SHA256(s+c+n)[0:8], 16) mod 100",
     houseEdge: 4,
     theoreticalWinRate: 48,
     researchFocus:
-      "Абсолютная прозрачность не меняет математику: E[profit] < 0 при любом механизме рандомизации.",
+      "Доказательство: прозрачность алгоритма не меняет отрицательное матожидание E[profit] < 0.",
   },
 };
 

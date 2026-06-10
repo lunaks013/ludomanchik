@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { AlertTriangle, Zap } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { useTelemetry } from "../../context/TelemetryContext";
 
 export function BankruptcyAlert() {
@@ -12,40 +12,36 @@ export function BankruptcyAlert() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40"
         >
           <motion.div
-            initial={{ scale: 0.9, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.9, y: 20 }}
-            className="mx-4 max-w-md rounded-2xl border border-red-500/40 bg-gradient-to-b from-red-950/80 to-slate-950 p-8 shadow-[0_0_80px_rgba(239,68,68,0.3)]"
+            initial={{ y: 12, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 12, opacity: 0 }}
+            className="mx-4 max-w-lg rounded-lg border border-slate-200 bg-white p-6 shadow-lg"
           >
-            <div className="mb-4 flex items-center gap-3">
-              <div className="rounded-full bg-red-500/20 p-3">
-                <AlertTriangle className="h-8 w-8 text-red-400" />
+            <div className="mb-4 flex items-start gap-3">
+              <div className="rounded-md bg-red-50 p-2">
+                <AlertTriangle className="h-5 w-5 text-red-700" />
               </div>
               <div>
-                <h3 className="text-xl font-black text-red-400">БАНКРОТСТВО</h3>
-                <p className="text-sm text-slate-400">Баланс = 0 ₽</p>
+                <h3 className="text-base font-semibold text-slate-900">
+                  Исчерпание экспериментального капитала
+                </h3>
+                <p className="mt-1 text-sm text-slate-500">Баланс сессии = 0 ₽</p>
               </div>
             </div>
 
-            <p className="mb-6 text-sm leading-relaxed text-slate-300">
-              Математическое ожидание отрицательно при любом механизме рандомизации.
-              Пополнение баланса — классический триггер «отыграюсь» (chasing losses).
+            <p className="mb-5 text-sm leading-relaxed text-slate-600">
+              Зафиксировано полное исчерпание капитала при отрицательном математическом ожидании.
+              Повторное пополнение моделирует поведенческий паттерн «chasing losses»
+              (попытка компенсировать потери).
             </p>
 
             <div className="flex gap-3">
-              <motion.button
-                type="button"
-                onClick={topUp}
-                animate={{ boxShadow: ["0 0 20px rgba(251,191,36,0.3)", "0 0 40px rgba(251,191,36,0.6)", "0 0 20px rgba(251,191,36,0.3)"] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="lab-btn-dopamine flex-1"
-              >
-                <Zap className="h-4 w-4" />
+              <button type="button" onClick={topUp} className="lab-btn-primary flex-1">
                 Пополнить +{params.initialBalance.toLocaleString("ru-RU")} ₽
-              </motion.button>
+              </button>
               <button type="button" onClick={dismissBankruptcyAlert} className="lab-btn-secondary">
                 Закрыть
               </button>

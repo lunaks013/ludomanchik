@@ -35,8 +35,8 @@ export function HomePage() {
         title="Анализ гемблинга (лудомании)"
         subtitle="на примере создания собственной программы и сводки результатов"
       >
-        <Link to="/games" className="btn-primary">
-          Открыть лабораторию
+          <Link to="/games" className="btn-primary">
+          Открыть программу
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link to="/theory" className="btn-secondary">Теория</Link>

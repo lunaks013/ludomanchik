@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        cosmic: {
-          950: "#030712",
-          900: "#0b1329",
-          800: "#0f1a3a",
+        academic: {
+          navy: "#1e3a5f",
+          "navy-light": "#2d4a73",
+          bg: "#f4f6f9",
+          card: "#ffffff",
+          border: "#e2e8f0",
+          muted: "#64748b",
+          text: "#1e293b",
         },
-        navy: "#0a1628",
-        gold: "#c9a227",
       },
       fontFamily: {
         sans: [
@@ -20,13 +22,7 @@ export default {
           "Segoe UI",
           "sans-serif",
         ],
-        mono: ["JetBrains Mono", "Fira Code", "Consolas", "monospace"],
-      },
-      backdropBlur: {
-        "2xl": "40px",
-      },
-      animation: {
-        pulse_slow: "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
     },
   },

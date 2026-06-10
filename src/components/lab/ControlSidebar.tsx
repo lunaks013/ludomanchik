@@ -1,19 +1,11 @@
-import { motion } from "framer-motion";
-import { Zap, RefreshCw, Wallet } from "lucide-react";
+import { RefreshCw, RotateCcw, Wallet } from "lucide-react";
 import { useTelemetry } from "../../context/TelemetryContext";
 import { getStrategyDescription, getStrategyLabel } from "../../math/betting";
 import { ALL_MECHANISM_IDS, MECHANISMS } from "../../math/mechanisms";
-import type { BettingStrategy, MechanismId } from "../../types";
+import type { BettingStrategy } from "../../types";
 import { RuleCompiler } from "./RuleCompiler";
 
 const STRATEGIES: BettingStrategy[] = ["flat", "martingale", "dalembert"];
-
-const MECHANISM_ICONS: Record<MechanismId, string> = {
-  lcg: "🎰",
-  csprng: "🚀",
-  weightedWheel: "🎡",
-  provablyFair: "🎲",
-};
 
 export function ControlSidebar() {
   const {
@@ -33,42 +25,36 @@ export function ControlSidebar() {
     <aside className="flex h-full flex-col gap-4 overflow-y-auto p-4">
       <div>
         <p className="lab-label">Механизмы рандомизации</p>
-        <div className="mt-2 space-y-1.5">
+        <div className="mt-2 space-y-1">
           {ALL_MECHANISM_IDS.map((id) => {
             const m = MECHANISMS[id];
             const active = activeMechanism === id;
             return (
-              <motion.button
+              <button
                 key={id}
                 type="button"
                 onClick={() => setActiveMechanism(id)}
-                whileHover={{ x: 2 }}
-                className={`w-full rounded-xl border px-3 py-2.5 text-left transition ${
+                className={`w-full rounded-md border px-3 py-2.5 text-left transition ${
                   active
-                    ? "border-cyan-500/40 bg-cyan-500/10 shadow-[0_0_20px_rgba(34,211,238,0.08)]"
-                    : "border-white/5 bg-slate-900/30 hover:border-white/10"
+                    ? "border-[#1e3a5f] bg-slate-50"
+                    : "border-slate-200 bg-white hover:border-slate-300"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{MECHANISM_ICONS[id]}</span>
-                  <div>
-                    <p className={`text-sm font-semibold ${active ? "text-cyan-300" : "text-white"}`}>
-                      {m.gameShell}
-                    </p>
-                    <p className="text-[10px] text-slate-500">{m.label}</p>
-                  </div>
-                </div>
-              </motion.button>
+                <p className={`text-sm font-medium ${active ? "text-[#1e3a5f]" : "text-slate-800"}`}>
+                  {m.label}
+                </p>
+                <p className="text-[11px] text-slate-500">{m.technicalName}</p>
+              </button>
             );
           })}
         </div>
       </div>
 
       <div className="lab-panel">
-        <p className="lab-label">Телеметрия сессии</p>
+        <p className="lab-label">Параметры эксперимента</p>
 
         <label className="lab-field">
-          <span>Начальный баланс</span>
+          <span>Начальный капитал, ₽</span>
           <input
             type="number"
             min={100}
@@ -82,7 +68,7 @@ export function ControlSidebar() {
         </label>
 
         <label className="lab-field">
-          <span>Базовая ставка</span>
+          <span>Базовый размер ставки, ₽</span>
           <input
             type="number"
             min={1}
@@ -93,21 +79,21 @@ export function ControlSidebar() {
         </label>
 
         <div className="lab-field">
-          <span>Стратегия ставок</span>
+          <span>Стратегия управления ставкой</span>
           <div className="mt-1.5 space-y-1">
             {STRATEGIES.map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => setParams({ strategy: s })}
-                className={`w-full rounded-lg border px-3 py-2 text-left text-xs transition ${
+                className={`w-full rounded-md border px-3 py-2 text-left text-xs transition ${
                   params.strategy === s
-                    ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
-                    : "border-white/5 text-slate-400 hover:border-white/10"
+                    ? "border-[#1e3a5f] bg-slate-50 text-[#1e3a5f]"
+                    : "border-slate-200 text-slate-600 hover:border-slate-300"
                 }`}
               >
-                <span className="font-semibold">{getStrategyLabel(s)}</span>
-                <p className="mt-0.5 text-[10px] opacity-70">{getStrategyDescription(s)}</p>
+                <span className="font-medium">{getStrategyLabel(s)}</span>
+                <p className="mt-0.5 text-[11px] text-slate-500">{getStrategyDescription(s)}</p>
               </button>
             ))}
           </div>
@@ -115,7 +101,7 @@ export function ControlSidebar() {
 
         {activeMechanism === "csprng" && (
           <label className="lab-field">
-            <span>Цель кэшаута (Crash)</span>
+            <span>Порог фиксации t* (CSPRNG)</span>
             <input
               type="number"
               min={1.1}
@@ -134,28 +120,26 @@ export function ControlSidebar() {
       <RuleCompiler />
 
       <div className="mt-auto space-y-2">
-        <motion.button
+        <button
           type="button"
           onClick={topUp}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className={`lab-btn-dopamine w-full ${showBankruptcyAlert ? "animate-pulse ring-2 ring-red-500/60" : ""}`}
+          className={`lab-btn-accent w-full ${showBankruptcyAlert ? "border-amber-400 bg-amber-50" : ""}`}
         >
-          <Zap className="h-4 w-4" />
-          Симуляция мгновенного дофаминового пополнения
-        </motion.button>
+          <RotateCcw className="h-4 w-4" />
+          Симуляция повторного пополнения счёта
+        </button>
 
         <button type="button" onClick={resetSession} className="lab-btn-secondary w-full">
           <RefreshCw className="h-4 w-4" />
-          Сброс сессии
+          Сброс экспериментальной сессии
         </button>
 
-        <div className="rounded-xl border border-white/5 bg-slate-900/30 p-3 text-xs text-slate-500">
-          <div className="flex items-center gap-2 text-slate-400">
+        <div className="rounded-md border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          <div className="flex items-center gap-2">
             <Wallet className="h-3.5 w-3.5" />
-            <span>Внесено: {session.totalDeposited.toLocaleString("ru-RU")} ₽</span>
+            <span>Внесено средств: {session.totalDeposited.toLocaleString("ru-RU")} ₽</span>
           </div>
-          <p className="mt-1">Пополнений: {session.topUpCount}</p>
+          <p className="mt-1">Количество пополнений: {session.topUpCount}</p>
         </div>
       </div>
     </aside>

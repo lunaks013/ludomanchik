@@ -11,21 +11,18 @@
 
   body {
     @apply font-sans antialiased;
-    background: #030712;
-    color: #e2e8f0;
+    background: #f4f6f9;
+    color: #1e293b;
   }
 }
 
 @layer components {
   .lab-root {
-    @apply flex min-h-[calc(100vh-74px)] flex-col;
-    background: linear-gradient(135deg, #030712 0%, #0b1329 50%, #030712 100%);
+    @apply flex min-h-[calc(100vh-58px)] flex-col bg-[#f4f6f9];
   }
 
   .lab-header {
-    @apply flex flex-wrap items-center justify-between gap-4 border-b border-white/5 px-4 py-4 md:px-6;
-    background: rgba(11, 19, 41, 0.6);
-    backdrop-filter: blur(24px);
+    @apply flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-4 py-4 md:px-6;
   }
 
   .lab-grid {
@@ -47,7 +44,7 @@
 
   .lab-sidebar-left,
   .lab-sidebar-right {
-    @apply border-white/5 bg-slate-900/20 backdrop-blur-2xl;
+    @apply border-slate-200 bg-white;
   }
 
   .lab-sidebar-left {
@@ -59,17 +56,16 @@
   }
 
   .lab-center {
-    @apply p-4 md:p-6;
+    @apply bg-[#f8fafc] p-4 md:p-6;
     min-height: 500px;
   }
 
   .lab-label {
-    @apply text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-400/70;
+    @apply text-[11px] font-semibold uppercase tracking-wider text-slate-500;
   }
 
   .lab-panel {
-    @apply rounded-xl border border-white/5 bg-slate-900/40 p-4 backdrop-blur-2xl;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    @apply rounded-lg border border-slate-200 bg-white p-4 shadow-sm;
   }
 
   .lab-field {
@@ -77,81 +73,93 @@
   }
 
   .lab-field > span:first-child {
-    @apply mb-1 block text-xs font-medium text-slate-400;
+    @apply mb-1 block text-xs font-medium text-slate-600;
   }
 
   .lab-input {
-    @apply w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white outline-none transition;
+    @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition;
   }
 
   .lab-input:focus {
-    @apply border-cyan-500/40;
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    @apply border-[#1e3a5f];
+    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.12);
   }
 
   .lab-stat-pill {
-    @apply rounded-lg border border-white/5 bg-slate-900/40 px-2 py-2 text-center;
+    @apply rounded-md border border-slate-200 bg-white px-2 py-2 text-center;
   }
 
   .lab-metric-widget {
-    @apply rounded-xl border bg-slate-900/40 p-3 backdrop-blur-xl;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    @apply rounded-lg border border-slate-200 bg-white p-3 shadow-sm;
   }
 
   .lab-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-slate-950 transition;
-    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
-    box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold text-white transition;
+    background: #1e3a5f;
   }
 
   .lab-btn-primary:hover:not(:disabled) {
-    box-shadow: 0 6px 28px rgba(34, 211, 238, 0.35);
-    transform: translateY(-1px);
+    background: #2d4a73;
   }
 
   .lab-btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-white/20 hover:bg-slate-800/60;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50;
   }
 
-  .lab-btn-dopamine {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition;
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    color: #0f172a;
-    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+  .lab-btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100;
   }
 
-  .lab-btn-dopamine:hover {
-    box-shadow: 0 6px 28px rgba(251, 191, 36, 0.45);
+  .lab-module-frame {
+    @apply w-full rounded-lg border border-slate-200 bg-white p-5 shadow-sm;
   }
 
-  /* Legacy pages (home, theory, results) */
+  .lab-data-table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .lab-data-table th {
+    @apply border border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs font-semibold text-slate-600;
+  }
+
+  .lab-data-table td {
+    @apply border border-slate-200 px-3 py-2 text-slate-800;
+  }
+
+  .lab-result-positive {
+    @apply text-emerald-700;
+  }
+
+  .lab-result-negative {
+    @apply text-red-700;
+  }
+
+  .lab-result-neutral {
+    @apply text-slate-600;
+  }
+
   .section-label {
-    @apply text-xs font-bold uppercase tracking-[0.2em] text-cyan-400/80;
+    @apply text-xs font-semibold uppercase tracking-wider text-[#1e3a5f];
   }
 
   .heading-xl {
-    @apply text-2xl font-bold leading-tight text-white md:text-4xl;
-    letter-spacing: -0.03em;
+    @apply text-2xl font-bold leading-tight text-slate-900 md:text-3xl;
   }
 
   .heading-lg {
-    @apply text-xl font-bold text-white md:text-2xl;
-    letter-spacing: -0.02em;
+    @apply text-xl font-bold text-slate-900 md:text-2xl;
   }
 
   .body-text {
-    @apply text-sm leading-relaxed text-slate-400 md:text-base;
+    @apply text-sm leading-relaxed text-slate-600 md:text-base;
   }
 
   .page-header {
-    @apply mb-8 overflow-hidden rounded-2xl border border-white/5 p-8;
-    background: linear-gradient(135deg, #0b1329 0%, #0f1a3a 100%);
-    color: #fff;
+    @apply mb-8 overflow-hidden rounded-lg border border-slate-200 bg-white p-8 shadow-sm;
   }
 
   .glass {
-    @apply rounded-2xl border border-white/5 bg-slate-900/40 backdrop-blur-2xl;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm;
   }
 
   .btn-primary {
@@ -167,9 +175,9 @@
   }
 
   .site-navbar {
-    background: rgba(3, 7, 18, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(24px);
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
   }
 
   .nav-link {
@@ -177,53 +185,43 @@
   }
 
   .nav-link-active {
-    color: #22d3ee;
-    box-shadow: inset 0 -3px 0 #22d3ee;
+    color: #1e3a5f;
+    box-shadow: inset 0 -2px 0 #1e3a5f;
   }
 
   .nav-link-inactive {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
   }
 
   .nav-link-inactive:hover {
-    color: #fff;
+    color: #1e293b;
   }
 
   .mechanism-card {
-    @apply block overflow-hidden transition duration-300;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(15, 23, 42, 0.5);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    @apply block overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200;
   }
 
   .mechanism-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(34, 211, 238, 0.08);
-    border-color: rgba(34, 211, 238, 0.3);
+    border-color: #1e3a5f;
+    box-shadow: 0 4px 12px rgba(30, 58, 95, 0.08);
   }
 
   .mechanism-card-img-wrap {
-    @apply relative h-56 overflow-hidden;
+    @apply relative h-48 overflow-hidden bg-slate-100;
   }
 
   .mechanism-card-overlay {
     @apply absolute inset-0 flex flex-col justify-end p-5;
-    background: linear-gradient(to top, rgba(3, 7, 18, 0.9) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(30, 58, 95, 0.85) 0%, transparent 60%);
   }
 
   .mechanism-card-img {
-    @apply h-full w-full object-cover transition duration-500;
-  }
-
-  .mechanism-card:hover .mechanism-card-img {
-    transform: scale(1.06);
+    @apply h-full w-full object-cover;
   }
 
   .mechanism-card-badge {
-    @apply absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-bold text-white;
-    background: rgba(239, 68, 68, 0.9);
-    backdrop-filter: blur(4px);
+    @apply absolute right-3 top-3 rounded px-2 py-0.5 text-xs font-semibold text-white;
+    background: rgba(30, 58, 95, 0.9);
   }
 
   .mechanism-card-body {
@@ -231,24 +229,19 @@
   }
 
   .feature-card {
-    @apply rounded-2xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-xl transition duration-300;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(34, 211, 238, 0.2);
+    @apply rounded-lg border border-slate-200 bg-white p-6 shadow-sm;
   }
 
   .feature-icon {
-    @apply mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400;
+    @apply mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 text-[#1e3a5f];
   }
 
   .stat-pill {
-    @apply rounded-2xl border border-white/5 bg-slate-900/40 p-5 text-center backdrop-blur-xl;
+    @apply rounded-lg border border-slate-200 bg-white p-5 text-center shadow-sm;
   }
 
   .stat-pill-value {
-    @apply text-3xl font-bold text-white;
+    @apply text-3xl font-bold text-slate-900;
   }
 
   .stat-pill-label {
@@ -256,50 +249,48 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white no-underline backdrop-blur-md transition hover:bg-white/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-6 py-2.5 text-sm font-medium text-slate-700 no-underline transition hover:bg-slate-50;
   }
 
   .hero-banner {
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    @apply rounded-lg border border-slate-200 shadow-sm;
   }
 
   .hero-overlay {
     background: linear-gradient(
       105deg,
-      rgba(3, 7, 18, 0.92) 0%,
-      rgba(11, 19, 41, 0.65) 50%,
-      rgba(11, 19, 41, 0.3) 100%
+      rgba(30, 58, 95, 0.92) 0%,
+      rgba(30, 58, 95, 0.7) 50%,
+      rgba(30, 58, 95, 0.4) 100%
     );
   }
 
   .hero-label {
-    @apply text-xs font-bold uppercase tracking-[0.25em] text-cyan-400;
+    @apply text-xs font-semibold uppercase tracking-wider text-slate-200;
   }
 
   .hero-title {
-    @apply text-3xl font-bold leading-tight text-white md:text-5xl;
-    letter-spacing: -0.03em;
+    @apply text-3xl font-bold leading-tight text-white md:text-4xl;
   }
 
   .hero-subtitle {
-    @apply text-base text-white/80 md:text-lg;
+    @apply text-base text-white/90 md:text-lg;
   }
 
   .step-list {
-    @apply overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 backdrop-blur-xl;
+    @apply overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm;
   }
 
   .step-item {
-    @apply flex gap-5 border-b border-white/5 px-6 py-5 last:border-0;
+    @apply flex gap-5 border-b border-slate-100 px-6 py-5 last:border-0;
   }
 
   .step-num {
-    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-sm font-bold text-cyan-400;
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-[#1e3a5f];
   }
 
   .topic-card {
-    @apply overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 transition duration-300;
+    @apply overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm;
   }
 
   .topic-card-body {
@@ -307,17 +298,16 @@
   }
 
   .quote-block {
-    @apply rounded-2xl border-l-4 border-cyan-500 bg-slate-900/60 p-6 md:p-8;
-    color: rgba(255, 255, 255, 0.9);
+    @apply rounded-lg border-l-4 border-[#1e3a5f] bg-slate-50 p-6 text-slate-700 md:p-8;
   }
 }
 
 @layer utilities {
   .text-pos {
-    color: #34d399;
+    color: #15803d;
   }
 
   .text-neg {
-    color: #f87171;
+    color: #b91c1c;
   }
 }

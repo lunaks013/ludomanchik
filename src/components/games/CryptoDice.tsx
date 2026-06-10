@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { ProvablyFairState } from "../../types";
 
 interface CryptoDiceProps {
@@ -12,13 +11,13 @@ interface CryptoDiceProps {
 
 function parseRoll(message: string | null): number | null {
   if (!message) return null;
-  const match = message.match(/Кости: (\d+)/);
+  const match = message.match(/значение=(\d+)/i);
   return match ? parseInt(match[1], 10) : null;
 }
 
 function parseHash(message: string | null): string | null {
   if (!message) return null;
-  const match = message.match(/хеш ([a-f0-9]+)/i);
+  const match = message.match(/хеш=([a-f0-9]+)/i);
   return match?.[1] ?? null;
 }
 
@@ -32,80 +31,72 @@ export function CryptoDice({
 }: CryptoDiceProps) {
   const roll = parseRoll(lastResult);
   const hash = parseHash(lastResult);
-  const won = lastResult?.includes("+") ?? false;
+  const isWin = lastResult?.includes("положительный") ?? false;
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-6">
-      <div className="rounded-xl border border-violet-500/20 bg-slate-900/40 p-4 backdrop-blur-xl">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-violet-400/70">
-          Provably Fair · SHA-256
+    <div className="lab-module-frame">
+      <div className="mb-4 border-b border-slate-200 pb-3">
+        <h3 className="text-sm font-semibold text-slate-800">Модуль IV — Provably Fair</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          Верифицируемый исход на базе SHA-256(serverSeed + clientSeed + nonce)
         </p>
-        <div className="space-y-2 font-mono text-xs">
-          <div className="flex flex-col gap-1">
-            <span className="text-slate-500">Хеш серверного seed (до броска):</span>
-            <span className="break-all text-violet-300">{provablyFair.serverSeedHash || "—"}</span>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-slate-500">Клиентский seed:</span>
-            <span className="break-all text-slate-300">{provablyFair.clientSeed || "—"}</span>
-          </div>
-          <div className="flex gap-4">
-            <span className="text-slate-500">Nonce: <span className="text-white">{provablyFair.nonce}</span></span>
-            {provablyFair.revealed && (
-              <span className="text-slate-500">Server: <span className="break-all text-emerald-400">{provablyFair.serverSeed}</span></span>
-            )}
-          </div>
-        </div>
-        <div className="mt-3 flex gap-2">
-          <button type="button" onClick={onRotateSeeds} className="lab-btn-secondary text-xs">
-            Новые seed
-          </button>
-          <button type="button" onClick={onRevealSeed} className="lab-btn-secondary text-xs">
-            Раскрыть server seed
-          </button>
-        </div>
       </div>
 
-      <div className="flex items-center justify-center gap-8">
-        <motion.div
-          className="relative flex h-28 w-28 items-center justify-center rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-950/50 to-slate-950 shadow-[0_0_40px_rgba(139,92,246,0.15)]"
-          animate={
-            isRolling
-              ? { rotate: [0, 360, 720], scale: [1, 1.1, 1] }
-              : roll !== null
-                ? { rotate: 0, scale: won ? [1, 1.08, 1] : 1 }
-                : {}
-          }
-          transition={isRolling ? { duration: 0.8, ease: "easeInOut" } : { type: "spring" }}
-        >
-          <span
-            className={`text-5xl font-black tabular-nums ${
-              roll === null ? "text-slate-600" : roll >= diceThreshold ? "text-emerald-400" : "text-red-400"
-            }`}
-          >
-            {isRolling ? "?" : roll ?? "—"}
-          </span>
-        </motion.div>
-
-        <div className="text-left">
-          <p className="text-sm text-slate-400">Порог выигрыша</p>
-          <p className="text-3xl font-bold text-violet-300">≥ {diceThreshold}</p>
-          {hash && (
-            <p className="mt-2 font-mono text-xs text-slate-500">
-              SHA-256: {hash}…
-            </p>
+      <table className="lab-data-table mb-4 text-xs">
+        <tbody>
+          <tr>
+            <td className="w-40 font-medium text-slate-600">Хеш server seed</td>
+            <td className="break-all font-mono text-[11px]">{provablyFair.serverSeedHash || "—"}</td>
+          </tr>
+          <tr>
+            <td className="font-medium text-slate-600">Client seed</td>
+            <td className="break-all font-mono text-[11px]">{provablyFair.clientSeed || "—"}</td>
+          </tr>
+          <tr>
+            <td className="font-medium text-slate-600">Nonce</td>
+            <td className="font-mono">{provablyFair.nonce}</td>
+          </tr>
+          {provablyFair.revealed && (
+            <tr>
+              <td className="font-medium text-slate-600">Server seed (раскрыт)</td>
+              <td className="break-all font-mono text-[11px] text-emerald-700">{provablyFair.serverSeed}</td>
+            </tr>
           )}
+        </tbody>
+      </table>
+
+      <div className="mb-4 flex gap-2">
+        <button type="button" onClick={onRotateSeeds} className="lab-btn-secondary text-xs">
+          Сгенерировать новые seed
+        </button>
+        <button type="button" onClick={onRevealSeed} className="lab-btn-secondary text-xs">
+          Раскрыть server seed
+        </button>
+      </div>
+
+      <div className="mb-4 grid grid-cols-3 gap-3 text-sm">
+        <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-center">
+          <span className="text-xs text-slate-500">Порог</span>
+          <p className="font-mono font-semibold">≥ {diceThreshold}</p>
+        </div>
+        <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-center">
+          <span className="text-xs text-slate-500">Значение</span>
+          <p className="font-mono font-semibold">{isRolling ? "…" : roll ?? "—"}</p>
+        </div>
+        <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-center">
+          <span className="text-xs text-slate-500">SHA-256</span>
+          <p className="truncate font-mono text-[10px]">{hash ? `${hash}…` : "—"}</p>
         </div>
       </div>
 
       {lastResult && !isRolling && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={`text-center text-sm font-medium ${won ? "text-emerald-400" : "text-red-400"}`}
+        <div
+          className={`rounded-md border px-4 py-3 text-sm ${
+            isWin ? "border-emerald-200 bg-emerald-50 lab-result-positive" : "border-red-200 bg-red-50 lab-result-negative"
+          }`}
         >
           {lastResult}
-        </motion.p>
+        </div>
       )}
     </div>
   );

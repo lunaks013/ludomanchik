@@ -8,14 +8,17 @@ export function LabDashboard() {
     <div className="lab-root">
       <header className="lab-header">
         <div>
-          <p className="lab-label">Лаборатория поведенческих исследований</p>
-          <h1 className="text-lg font-black text-white md:text-xl">
-            Телеметрическая панель · Анализ лудомании
+          <p className="lab-label">Программный комплекс · Практическая часть дипломной работы</p>
+          <h1 className="text-base font-bold text-slate-900 md:text-lg">
+            Исследовательская платформа анализа лудомании
           </h1>
+          <p className="mt-1 text-xs text-slate-500">
+            Сравнительный анализ четырёх механизмов генерации случайных чисел
+          </p>
         </div>
         <div className="hidden text-right text-xs text-slate-500 md:block">
-          <p>Дипломная работа · 2026</p>
-          <p className="text-slate-600">E[profit] &lt; 0 ∀ механизмов рандомизации</p>
+          <p className="font-medium text-slate-700">Дипломная работа · 2026</p>
+          <p>Математическое ожидание E[Δ] &lt; 0 при всех механизмах</p>
         </div>
       </header>
 
