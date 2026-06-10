@@ -39,74 +39,94 @@ export function ResultsPage() {
   const totalDeposited = Object.values(sessions).reduce((s, sess) => s + sess.totalDeposited, 0);
 
   return (
-    <div className="px-4 pb-20 pt-[74px] md:px-6">
+    <div className="mx-auto max-w-5xl px-4 pb-16 pt-[74px] md:px-6">
       <PageHeader
         label="Сводка результатов"
         title="Итоги анализа"
-        description="Сравнение всех 4 механизмов рандома. Какой бы генератор ни использовался — средний профит отрицательный."
+        description="Сравнительная таблица по четырём механизмам RNG. Независимо от алгоритма средний профит остаётся отрицательным."
       />
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
-        <StatCard title="Пополнений баланса" value={String(totalTopUps)} hint="триггер «отыграюсь»" />
-        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем играм" />
+        <StatCard title="Пополнений счёта" value={String(totalTopUps)} hint="поведенческий маркер" />
+        <StatCard title="Всего внесено" value={formatMoney(totalDeposited)} hint="по всем модулям" />
       </div>
 
       {mcResult ? (
         <>
-          <p className="mb-4 text-sm text-slate-400">
-            Последний анализ: <strong className="text-white">{info.gameShell}</strong> ({info.label})
+          <p className="mb-4 text-sm text-slate-600">
+            Последний расчёт: <strong className="text-slate-900">{info.gameShell}</strong> ({info.label})
           </p>
           <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard title="Средний баланс" value={formatMoney(stats!.averageFinalBalance)} hint={`старт ${formatMoney(params.initialBalance)}`} />
-            <StatCard title="Средний профит" value={formatProfit(stats!.averageProfit)} valueClassName={stats!.averageProfit >= 0 ? "text-pos" : "text-neg"} />
-            <StatCard title="Банкротство" value={`${stats!.bankruptcyRate.toFixed(1)}%`} valueClassName={stats!.bankruptcyRate > 20 ? "text-neg" : ""} />
-            <StatCard title="Винрейт" value={`${stats!.winRate.toFixed(1)}%`} hint={`теория ${stats!.theoreticalWinRate.toFixed(1)}%`} />
+            <StatCard
+              title="Средний остаток"
+              value={formatMoney(stats!.averageFinalBalance)}
+              hint={`старт ${formatMoney(params.initialBalance)}`}
+            />
+            <StatCard
+              title="Средний Δ"
+              value={formatProfit(stats!.averageProfit)}
+              valueClassName={stats!.averageProfit >= 0 ? "text-pos" : "text-neg"}
+            />
+            <StatCard
+              title="Исчерпание капитала"
+              value={`${stats!.bankruptcyRate.toFixed(1)}%`}
+              valueClassName={stats!.bankruptcyRate > 20 ? "text-neg" : ""}
+            />
+            <StatCard
+              title="Доля положит. исходов"
+              value={`${stats!.winRate.toFixed(1)}%`}
+              hint={`теория ${stats!.theoreticalWinRate.toFixed(1)}%`}
+            />
           </div>
         </>
       ) : (
         <div className="glass mb-10 p-10 text-center">
-          <p className="text-slate-400">Монте-Карло ещё не запускался.</p>
-          <Link to="/games" className="btn-primary mt-4 inline-flex">Открыть лабораторию</Link>
+          <p className="text-slate-600">Расчёт Монте-Карло ещё не выполнялся.</p>
+          <Link to="/games" className="btn-primary mt-4 inline-flex">
+            Открыть программу
+          </Link>
         </div>
       )}
 
       <section className="mb-10">
         <h2 className="heading-lg mb-1">Сравнение механизмов</h2>
-        <p className="mb-5 text-sm text-slate-400">
-          Банк {formatMoney(params.initialBalance)} · ставка {formatMoney(params.baseBet)} ·{" "}
+        <p className="mb-5 text-sm text-slate-600">
+          Капитал {formatMoney(params.initialBalance)} · ставка {formatMoney(params.baseBet)} ·{" "}
           {MONTE_CARLO_PATHWAYS} траекторий Монте-Карло
         </p>
         {loading || !comparison ? (
-          <div className="glass p-12 text-center text-slate-400">Считаем статистику…</div>
+          <div className="glass p-12 text-center text-slate-500">Выполняется расчёт…</div>
         ) : (
           <MechanismCompare data={comparison} />
         )}
       </section>
 
       {comparison && (
-        <div className="glass mb-10 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="glass mb-10 overflow-x-auto">
+          <table className="data-table">
             <thead>
-              <tr className="border-b border-white/5 text-left text-slate-400">
-                <th className="px-4 py-3">Механизм</th>
-                <th className="px-4 py-3">Игра</th>
-                <th className="px-4 py-3 text-right">Edge</th>
-                <th className="px-4 py-3 text-right">Профит</th>
-                <th className="hidden px-4 py-3 text-right sm:table-cell">Банкротство</th>
+              <tr>
+                <th>Механизм</th>
+                <th>Модуль</th>
+                <th className="text-right">Edge</th>
+                <th className="text-right">Средний Δ</th>
+                <th className="hidden text-right sm:table-cell">Исчерпание</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((row) => {
                 const m = MECHANISMS[row.mechanism];
                 return (
-                  <tr key={row.mechanism} className="border-b border-white/5 last:border-0">
-                    <td className="px-4 py-3 font-semibold text-white">{row.label}</td>
-                    <td className="px-4 py-3 text-slate-400">{row.gameShell}</td>
-                    <td className="px-4 py-3 text-right text-neg">−{m.houseEdge}%</td>
-                    <td className={`px-4 py-3 text-right font-medium ${row.stats.averageProfit >= 0 ? "text-pos" : "text-neg"}`}>
+                  <tr key={row.mechanism}>
+                    <td className="font-medium text-slate-900">{row.label}</td>
+                    <td className="text-slate-600">{row.gameShell}</td>
+                    <td className="text-right text-neg">−{m.houseEdge}%</td>
+                    <td
+                      className={`text-right font-medium ${row.stats.averageProfit >= 0 ? "text-pos" : "text-neg"}`}
+                    >
                       {formatProfit(row.stats.averageProfit)}
                     </td>
-                    <td className="hidden px-4 py-3 text-right text-slate-400 sm:table-cell">
+                    <td className="hidden text-right text-slate-600 sm:table-cell">
                       {row.stats.bankruptcyRate.toFixed(1)}%
                     </td>
                   </tr>
@@ -120,8 +140,12 @@ export function ResultsPage() {
       <PsychLog />
 
       <div className="mt-8 flex gap-4">
-        <Link to="/games" className="btn-primary">Лаборатория</Link>
-        <Link to="/theory" className="btn-outline">Теория</Link>
+        <Link to="/games" className="btn-primary">
+          Программа
+        </Link>
+        <Link to="/theory" className="btn-outline">
+          Теория
+        </Link>
       </div>
     </div>
   );

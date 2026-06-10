@@ -1,24 +1,18 @@
 import type { MechanismId } from "../types";
 
 const base = import.meta.env.BASE_URL;
-const v = "5";
 
-/** Фотографии для дипломной работы — локальные JPG */
-export const IMAGES = {
-  hero: `${base}images/hero.jpg?v=${v}`,
-  psychology: `${base}images/psychology.jpg?v=${v}`,
-  roulette: `${base}images/roulette.jpg?v=${v}`,
-  dice: `${base}images/dice.jpg?v=${v}`,
-  cards: `${base}images/cards.jpg?v=${v}`,
-  slot: `${base}images/slot.jpg?v=${v}`,
-  analytics: `${base}images/analytics.jpg?v=${v}`,
-  chips: `${base}images/chips.jpg?v=${v}`,
-  wallet: `${base}images/wallet.jpg?v=${v}`,
+/** Компактные SVG-иконки для карточек (не фотографии) */
+export const ICONS = {
+  analytics: `${base}images/analytics.svg`,
+  dice: `${base}images/dice.svg`,
+  slot: `${base}images/slot.svg`,
+  psychology: `${base}images/psychology.svg`,
 } as const;
 
-export const MECHANISM_IMAGES: Record<MechanismId, string> = {
-  lcg: IMAGES.slot,
-  csprng: IMAGES.analytics,
-  weightedWheel: IMAGES.roulette,
-  provablyFair: IMAGES.dice,
+export const MECHANISM_ICONS: Record<MechanismId, string> = {
+  lcg: `${base}images/slot.svg`,
+  csprng: `${base}images/analytics.svg`,
+  weightedWheel: `${base}images/roulette.svg`,
+  provablyFair: `${base}images/dice.svg`,
 };

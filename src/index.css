@@ -162,6 +162,46 @@
     @apply rounded-lg border border-slate-200 bg-white shadow-sm;
   }
 
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table thead tr {
+    @apply border-b border-slate-200 bg-slate-50 text-left;
+  }
+
+  .data-table th {
+    @apply px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+
+  .data-table tbody tr {
+    @apply border-b border-slate-100 last:border-0;
+  }
+
+  .data-table td {
+    @apply px-4 py-3;
+  }
+
+  .thesis-card {
+    @apply rounded-lg border border-slate-200 bg-white p-5 shadow-sm;
+  }
+
+  .thesis-card-icon {
+    @apply mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-[#1e3a5f];
+  }
+
+  .mechanism-card-icon {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#1e3a5f];
+  }
+
+  .stat-row {
+    @apply grid grid-cols-2 gap-3 md:grid-cols-4;
+  }
+
+  .cta-banner {
+    @apply flex flex-wrap items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm md:p-8;
+  }
+
   .btn-primary {
     @apply lab-btn-primary;
   }
@@ -198,30 +238,7 @@
   }
 
   .mechanism-card {
-    @apply block overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200;
-  }
-
-  .mechanism-card:hover {
-    border-color: #1e3a5f;
-    box-shadow: 0 4px 12px rgba(30, 58, 95, 0.08);
-  }
-
-  .mechanism-card-img-wrap {
-    @apply relative h-48 overflow-hidden bg-slate-100;
-  }
-
-  .mechanism-card-overlay {
-    @apply absolute inset-0 flex flex-col justify-end p-5;
-    background: linear-gradient(to top, rgba(30, 58, 95, 0.85) 0%, transparent 60%);
-  }
-
-  .mechanism-card-img {
-    @apply h-full w-full object-cover;
-  }
-
-  .mechanism-card-badge {
-    @apply absolute right-3 top-3 rounded px-2 py-0.5 text-xs font-semibold text-white;
-    background: rgba(30, 58, 95, 0.9);
+    @apply block rounded-lg border border-slate-200 bg-white shadow-sm transition hover:border-[#1e3a5f]/40 hover:shadow-md;
   }
 
   .mechanism-card-body {
@@ -252,31 +269,6 @@
     @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-6 py-2.5 text-sm font-medium text-slate-700 no-underline transition hover:bg-slate-50;
   }
 
-  .hero-banner {
-    @apply rounded-lg border border-slate-200 shadow-sm;
-  }
-
-  .hero-overlay {
-    background: linear-gradient(
-      105deg,
-      rgba(30, 58, 95, 0.92) 0%,
-      rgba(30, 58, 95, 0.7) 50%,
-      rgba(30, 58, 95, 0.4) 100%
-    );
-  }
-
-  .hero-label {
-    @apply text-xs font-semibold uppercase tracking-wider text-slate-200;
-  }
-
-  .hero-title {
-    @apply text-3xl font-bold leading-tight text-white md:text-4xl;
-  }
-
-  .hero-subtitle {
-    @apply text-base text-white/90 md:text-lg;
-  }
-
   .step-list {
     @apply overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm;
   }
@@ -287,14 +279,6 @@
 
   .step-num {
     @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-[#1e3a5f];
-  }
-
-  .topic-card {
-    @apply overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm;
-  }
-
-  .topic-card-body {
-    @apply p-5;
   }
 
   .quote-block {
