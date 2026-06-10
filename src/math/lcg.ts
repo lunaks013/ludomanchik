@@ -21,6 +21,10 @@ export class LCG {
     return min + this.nextInt(max - min + 1);
   }
 
+  nextFloatRange(min: number, max: number): number {
+    return min + this.next() * (max - min);
+  }
+
   getSeed(): number {
     return this.state;
   }
@@ -35,6 +39,14 @@ let globalLcg = new LCG();
 
 export function lcgNext(): number {
   return globalLcg.next();
+}
+
+export function lcgFloatRange(min: number, max: number): number {
+  return globalLcg.nextFloatRange(min, max);
+}
+
+export function lcgIntegerRange(min: number, max: number): number {
+  return globalLcg.nextRange(min, max);
 }
 
 export function resetLcg(seed?: number): LCG {
