@@ -16,14 +16,14 @@ export function Navbar() {
     <header className="site-navbar fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto flex h-[58px] max-w-6xl items-stretch px-4 md:px-6">
         <NavLink to="/" className="flex items-center gap-2.5 no-underline">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#1e3a5f] text-xs font-bold text-white">
-            АГ
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold text-sm font-black text-navy">
+            А
           </span>
           <div className="hidden sm:block">
-            <span className="block text-sm font-semibold text-slate-900">
+            <span className="block text-sm font-bold text-white">
               Анализ гемблинга
             </span>
-            <span className="block text-[10px] text-slate-500">Дипломная работа · 2026</span>
+            <span className="block text-[10px] text-white/55">Дипломная работа · 2026</span>
           </div>
         </NavLink>
 
@@ -48,7 +48,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="ml-auto flex h-10 w-10 items-center justify-center text-slate-700 md:ml-0 md:hidden"
+          className="ml-auto flex h-10 w-10 items-center justify-center text-white md:ml-0 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Меню"
         >
@@ -57,7 +57,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <nav className="border-t border-slate-200 bg-white px-4 py-3 md:hidden">
+        <nav className="border-t border-white/10 bg-navy-light px-4 py-3 md:hidden">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -65,7 +65,7 @@ export function Navbar() {
               end={l.end}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block py-2.5 text-sm no-underline ${isActive ? "font-semibold text-[#1e3a5f]" : "text-slate-600"}`
+                `block py-2.5 text-sm no-underline ${isActive ? "font-semibold text-gold" : "text-white/70"}`
               }
             >
               {l.label}
