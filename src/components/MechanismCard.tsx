@@ -27,8 +27,8 @@ export function MechanismCard({ mechanism }: MechanismCardProps) {
       </div>
       <div className="mechanism-card-body">
         <p className="text-sm text-ozon-muted">{mechanism.technicalName}</p>
-        <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-gold">
-          Открыть в программе
+        <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-cyan-400">
+          Открыть в лаборатории
           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
         </p>
       </div>

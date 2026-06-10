@@ -3,8 +3,8 @@ import { PageHeader } from "../components/PageHeader";
 import { SectionHeader } from "../components/SectionHeader";
 import { SiteImage } from "../components/SiteImage";
 import { IMAGES } from "../lib/images";
-import { MECHANISM_LIST } from "../lib/mechanisms";
-import { MONTE_CARLO_ITERATIONS } from "../lib/monteCarlo";
+import { MECHANISM_LIST } from "../math/mechanisms";
+import { MONTE_CARLO_PATHWAYS } from "../math/monteCarlo";
 
 const points = [
   {
@@ -31,7 +31,7 @@ const points = [
 
 export function TheoryPage() {
   return (
-    <div>
+    <div className="px-4 pb-20 pt-[74px] md:px-6">
       <PageHeader
         label="Теоретическая часть"
         title="Гемблинг и лудомания"
@@ -91,7 +91,7 @@ export function TheoryPage() {
           <h2 className="heading-lg mb-3">Метод Монте-Карло</h2>
           <p className="text-sm leading-relaxed text-ozon-muted">
             Для каждого механизма —{" "}
-            <strong className="text-ozon-text">{MONTE_CARLO_ITERATIONS} независимых сессий</strong> с
+            <strong className="text-white">{MONTE_CARLO_PATHWAYS} независимых сессий</strong> с
             одинаковыми параметрами. Сравниваются средний баланс, доля банкротств и винрейт.
           </p>
         </div>

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const links = [
   { to: "/", label: "Главная", end: true },
   { to: "/theory", label: "Теория" },
-  { to: "/games", label: "Программа" },
+  { to: "/games", label: "Лаборатория" },
   { to: "/results", label: "Итоги" },
 ];
 
@@ -16,7 +16,7 @@ export function Navbar() {
     <header className="site-navbar fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto flex h-[58px] max-w-6xl items-stretch px-4 md:px-6">
         <NavLink to="/" className="flex items-center gap-2 no-underline">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold text-sm font-black text-navy">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500 text-sm font-black text-slate-950">
             А
           </span>
           <span className="text-sm font-bold text-white">
@@ -40,7 +40,7 @@ export function Navbar() {
         </nav>
 
         <NavLink to="/games" className="btn-primary my-2 hidden !px-4 !py-2 text-xs md:inline-flex">
-          Демо
+          Лаборатория
         </NavLink>
 
         <button
@@ -69,7 +69,7 @@ export function Navbar() {
             </NavLink>
           ))}
           <NavLink to="/games" onClick={() => setOpen(false)} className="btn-primary mt-3 w-full text-center text-sm">
-            Демо
+            Лаборатория
           </NavLink>
         </nav>
       )}

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
-import { GameProvider } from "./context/GameContext";
+import { TelemetryProvider } from "./context/TelemetryContext";
 
 const HomePage = lazy(() => import("./pages/HomePage").then((m) => ({ default: m.HomePage })));
 const TheoryPage = lazy(() => import("./pages/TheoryPage").then((m) => ({ default: m.TheoryPage })));
@@ -12,7 +12,7 @@ const ResultsPage = lazy(() =>
 
 function PageLoader() {
   return (
-    <div className="flex min-h-[50vh] items-center justify-center text-ozon-muted">
+    <div className="flex min-h-[50vh] items-center justify-center text-slate-400">
       Загрузка…
     </div>
   );
@@ -21,7 +21,7 @@ function PageLoader() {
 export default function App() {
   return (
     <HashRouter>
-      <GameProvider>
+      <TelemetryProvider>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route element={<AppLayout />}>
@@ -34,7 +34,7 @@ export default function App() {
             </Route>
           </Routes>
         </Suspense>
-      </GameProvider>
+      </TelemetryProvider>
     </HashRouter>
   );
 }

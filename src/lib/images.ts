@@ -17,8 +17,8 @@ export const IMAGES = {
 } as const;
 
 export const MECHANISM_IMAGES: Record<MechanismId, string> = {
-  prng: IMAGES.roulette,
-  xorshift: IMAGES.dice,
-  fisherYates: IMAGES.cards,
-  weighted: IMAGES.slot,
+  lcg: IMAGES.slot,
+  csprng: IMAGES.analytics,
+  weightedWheel: IMAGES.roulette,
+  provablyFair: IMAGES.dice,
 };

@@ -1,11 +1,26 @@
-export type MechanismId = "prng" | "xorshift" | "fisherYates" | "weighted";
+export type MechanismId = "lcg" | "csprng" | "weightedWheel" | "provablyFair";
 
-export type ExcitementType = "top_up" | "win_streak" | "near_miss" | "recovery" | "big_win";
+export type BettingStrategy = "flat" | "martingale" | "dalembert";
 
-export interface ExcitementEvent {
-  type: ExcitementType;
+export type PsychEventType =
+  | "top_up"
+  | "win_streak"
+  | "loss_streak"
+  | "near_miss"
+  | "martingale_trap"
+  | "dalembert_escalation"
+  | "illusion_of_control"
+  | "bankruptcy"
+  | "big_win"
+  | "chase_loss"
+  | "parameter_change";
+
+export interface PsychEvent {
+  id: string;
+  type: PsychEventType;
   mechanism: MechanismId;
   message: string;
+  brainRegion?: string;
   timestamp: number;
 }
 
@@ -18,6 +33,13 @@ export interface MechanismInfo {
   implementation: string;
   houseEdge: number;
   theoreticalWinRate: number;
+  researchFocus: string;
+}
+
+export interface CustomGameRules {
+  winThreshold: number;
+  payoutMultiplier: number;
+  modified: boolean;
 }
 
 export interface GameSession {
@@ -28,15 +50,30 @@ export interface GameSession {
   betsPlayed: number;
   wins: number;
   losses: number;
+  consecutiveLosses: number;
+  consecutiveWins: number;
   currentStreak: number;
   maxWinStreak: number;
   lastResult: string | null;
+  lastBet: number;
+  pathway: number[];
+  houseAbsorbed: number;
 }
 
-export interface SimulationParams {
-  startingBalance: number;
+export interface SessionSnapshot {
+  id: string;
+  mechanism: MechanismId;
+  pathway: number[];
+  bankrupt: boolean;
+  timestamp: number;
+}
+
+export interface TelemetryParams {
+  initialBalance: number;
   baseBet: number;
-  numberOfBets: number;
+  strategy: BettingStrategy;
+  crashTarget: number;
+  diceThreshold: number;
 }
 
 export interface SimulationRun {
@@ -44,7 +81,7 @@ export interface SimulationRun {
   bankrupt: boolean;
   maxDrawdown: number;
   wins: number;
-  betsPlayed?: number;
+  betsPlayed: number;
 }
 
 export interface SimulationStats {
@@ -54,6 +91,8 @@ export interface SimulationStats {
   maxDrawdown: number;
   winRate: number;
   theoreticalWinRate: number;
+  capitalDecayRate: number;
+  houseMargin: number;
 }
 
 export interface SimulationResult {
@@ -62,16 +101,26 @@ export interface SimulationResult {
   stats: SimulationStats;
 }
 
-export interface MechanismComparison {
-  mechanism: MechanismId;
-  label: string;
-  gameShell: string;
-  stats: SimulationStats;
-}
-
 export interface GameRoundResult {
   won: boolean;
   payout: number;
+  netChange: number;
   message: string;
   nearMiss?: boolean;
+  metadata?: Record<string, string | number | boolean>;
+}
+
+export interface ProvablyFairState {
+  serverSeed: string;
+  serverSeedHash: string;
+  clientSeed: string;
+  nonce: number;
+  revealed: boolean;
+}
+
+export interface TelemetryMetrics {
+  bankruptcyProbabilityIndex: number;
+  averageCapitalDecayRate: number;
+  accumulatedHouseMargin: number;
+  sessionCount: number;
 }

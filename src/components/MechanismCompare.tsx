@@ -7,17 +7,18 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { MechanismComparison } from "../types";
+import type { MechanismComparison } from "../math/monteCarlo";
 
 interface MechanismCompareProps {
   data: MechanismComparison[];
 }
 
 const tooltipStyle = {
-  background: "#fff",
-  border: "1px solid #e2e8f0",
-  borderRadius: 6,
+  background: "rgba(15, 23, 42, 0.95)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: 8,
   fontSize: 12,
+  color: "#e2e8f0",
 };
 
 export function MechanismCompare({ data }: MechanismCompareProps) {
@@ -34,27 +35,27 @@ export function MechanismCompare({ data }: MechanismCompareProps) {
   return (
     <div className="grid gap-5 lg:grid-cols-2">
       <div className="glass p-5">
-        <h3 className="text-sm font-semibold text-ozon-text">Средний профит</h3>
+        <h3 className="text-sm font-semibold text-white">Средний профит</h3>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={profitData} layout="vertical" margin={{ left: 4, right: 12 }}>
-            <CartesianGrid stroke="#e2e8f0" horizontal={false} />
+            <CartesianGrid stroke="rgba(255,255,255,0.06)" horizontal={false} />
             <XAxis type="number" tick={{ fill: "#64748b", fontSize: 11 }} />
             <YAxis type="category" dataKey="name" width={64} tick={{ fill: "#64748b", fontSize: 11 }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Bar dataKey="value" fill="#c9a227" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="value" fill="#22d3ee" radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <div className="glass p-5">
-        <h3 className="text-sm font-semibold text-ozon-text">Банкротство, %</h3>
+        <h3 className="text-sm font-semibold text-white">Банкротство, %</h3>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={bustData} layout="vertical" margin={{ left: 4, right: 12 }}>
-            <CartesianGrid stroke="#e2e8f0" horizontal={false} />
+            <CartesianGrid stroke="rgba(255,255,255,0.06)" horizontal={false} />
             <XAxis type="number" domain={[0, 100]} tick={{ fill: "#64748b", fontSize: 11 }} />
             <YAxis type="category" dataKey="name" width={64} tick={{ fill: "#64748b", fontSize: 11 }} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Bar dataKey="value" fill="#94a3b8" radius={[0, 3, 3, 0]} />
+            <Bar dataKey="value" fill="#f87171" radius={[0, 3, 3, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -5,7 +5,7 @@ import { MechanismCard } from "../components/MechanismCard";
 import { SectionHeader } from "../components/SectionHeader";
 import { SiteImage } from "../components/SiteImage";
 import { IMAGES } from "../lib/images";
-import { MECHANISM_LIST } from "../lib/mechanisms";
+import { MECHANISM_LIST } from "../math/mechanisms";
 
 const steps = [
   "Показать 4 механизма рандома и их техническую реализацию",
@@ -14,21 +14,21 @@ const steps = [
 ];
 
 const features = [
-  { icon: Code2, title: "4 RNG-механизма", text: "Math.random(), XorShift, Fisher-Yates, взвешенный выбор" },
-  { icon: Brain, title: "Психология азарта", text: "Пополнение, серии побед, near-miss — журнал триггеров" },
-  { icon: BarChart3, title: "Монте-Карло", text: "40 виртуальных игроков на каждый механизм" },
+  { icon: Code2, title: "4 RNG-механизма", text: "LCG PRNG, CSPRNG, Weighted Near-Miss, Provably Fair SHA-256" },
+  { icon: Brain, title: "Психология азарта", text: "Пополнение, серии побед, near-miss — научный псих-лог" },
+  { icon: BarChart3, title: "Монте-Карло", text: "50 параллельных траекторий на каждый механизм" },
 ];
 
 const stats = [
   { value: "4", label: "механизма рандома" },
   { value: "4", label: "игровые оболочки" },
-  { value: "40", label: "игроков в анализе" },
-  { value: "−2.7%", label: "мин. edge казино", accent: true },
+  { value: "50", label: "траекторий MC" },
+  { value: "−4%", label: "мин. edge казино", accent: true },
 ];
 
 export function HomePage() {
   return (
-    <div>
+    <div className="px-4 pb-20 pt-[74px] md:px-6">
       <HeroBanner
         image={IMAGES.hero}
         label="Дипломная работа · 2026"
@@ -36,7 +36,7 @@ export function HomePage() {
         subtitle="на примере создания собственной программы и сводки результатов"
       >
         <Link to="/games" className="btn-primary">
-          Открыть программу
+          Открыть лабораторию
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link to="/theory" className="btn-secondary">Теория</Link>
