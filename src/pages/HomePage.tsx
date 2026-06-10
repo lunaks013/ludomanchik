@@ -1,8 +1,10 @@
 import { ArrowRight, BarChart3, BookOpen, Code2, FlaskConical } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AcademicFigure } from "../components/AcademicFigure";
 import { MechanismCard } from "../components/MechanismCard";
 import { PageHeader } from "../components/PageHeader";
 import { SectionHeader } from "../components/SectionHeader";
+import { IMAGES } from "../lib/images";
 import { MECHANISM_LIST } from "../math/mechanisms";
 
 const steps = [
@@ -45,6 +47,13 @@ export function HomePage() {
         description="На примере разработки программного комплекса и сводки результатов моделирования. Демонстрация того, что отрицательное математическое ожидание сохраняется при любом механизме рандомизации."
       />
 
+      <AcademicFigure
+        src={IMAGES.hero}
+        alt="Научно-исследовательская работа с анализом данных"
+        caption="Рис. 1 — Программный комплекс для анализа поведенческих и статистических закономерностей"
+        className="mb-8"
+      />
+
       <div className="mb-8 flex flex-wrap gap-3">
         <Link to="/games" className="btn-primary">
           Открыть программу
@@ -73,6 +82,18 @@ export function HomePage() {
           title="Программные модули"
           description="Каждый механизм реализован отдельно и доступен в разделе «Программа»."
         />
+        <div className="figure-grid mb-6">
+          <AcademicFigure
+            src={IMAGES.rng}
+            alt="Схема алгоритмов генерации случайных чисел"
+            caption="Рис. 2 — Четыре механизма RNG, реализованные в программе"
+          />
+          <AcademicFigure
+            src={IMAGES.analytics}
+            alt="График траекторий моделирования Монте-Карло"
+            caption="Рис. 3 — Траектории капитала при моделировании Монте-Карло"
+          />
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {MECHANISM_LIST.map((m) => (
             <MechanismCard key={m.id} mechanism={m} />

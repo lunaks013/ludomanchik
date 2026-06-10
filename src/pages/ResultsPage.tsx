@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { AcademicFigure } from "../components/AcademicFigure";
 import { MechanismCompare } from "../components/MechanismCompare";
 import { PageHeader } from "../components/PageHeader";
+import { IMAGES } from "../lib/images";
 import { PsychLog } from "../components/lab/PsychLog";
 import { StatCard } from "../components/StatCard";
 import { useTelemetry, MONTE_CARLO_PATHWAYS } from "../context/TelemetryContext";
@@ -87,6 +89,13 @@ export function ResultsPage() {
           </Link>
         </div>
       )}
+
+      <AcademicFigure
+        src={IMAGES.analytics}
+        alt="Сводная визуализация результатов моделирования"
+        caption="Рис. 1 — Сравнительный анализ траекторий капитала по механизмам RNG"
+        className="mb-8"
+      />
 
       <section className="mb-10">
         <h2 className="heading-lg mb-1">Сравнение механизмов</h2>

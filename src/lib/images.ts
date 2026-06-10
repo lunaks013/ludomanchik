@@ -1,18 +1,10 @@
-import type { MechanismId } from "../types";
-
 const base = import.meta.env.BASE_URL;
+const v = "1";
 
-/** Компактные SVG-иконки для карточек (не фотографии) */
-export const ICONS = {
-  analytics: `${base}images/analytics.svg`,
-  dice: `${base}images/dice.svg`,
-  slot: `${base}images/slot.svg`,
-  psychology: `${base}images/psychology.svg`,
+/** Иллюстрации в научном стиле (дипломная работа) */
+export const IMAGES = {
+  hero: `${base}images/hero-academic.png?v=${v}`,
+  psychology: `${base}images/psychology-research.png?v=${v}`,
+  analytics: `${base}images/analytics-montecarlo.png?v=${v}`,
+  rng: `${base}images/rng-algorithms.png?v=${v}`,
 } as const;
-
-export const MECHANISM_ICONS: Record<MechanismId, string> = {
-  lcg: `${base}images/slot.svg`,
-  csprng: `${base}images/analytics.svg`,
-  weightedWheel: `${base}images/roulette.svg`,
-  provablyFair: `${base}images/dice.svg`,
-};

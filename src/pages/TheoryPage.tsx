@@ -1,7 +1,9 @@
 import { Brain, RefreshCw, Scale, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AcademicFigure } from "../components/AcademicFigure";
 import { PageHeader } from "../components/PageHeader";
 import { SectionHeader } from "../components/SectionHeader";
+import { IMAGES } from "../lib/images";
 import { MECHANISM_LIST } from "../math/mechanisms";
 import { MONTE_CARLO_PATHWAYS } from "../math/monteCarlo";
 
@@ -35,6 +37,13 @@ export function TheoryPage() {
         label="Теоретическая часть"
         title="Гемблинг и лудомания"
         description="Независимо от технической реализации генератора случайных чисел математическое ожидание результата для участника остаётся отрицательным."
+      />
+
+      <AcademicFigure
+        src={IMAGES.psychology}
+        alt="Нейрокогнитивные аспекты исследования зависимого поведения"
+        caption="Рис. 1 — Поведенческие и нейрокогнитивные факторы, изучаемые в работе"
+        className="mb-10"
       />
 
       <section className="mb-12">
@@ -84,6 +93,12 @@ export function TheoryPage() {
       </section>
 
       <section className="mb-12">
+        <AcademicFigure
+          src={IMAGES.analytics}
+          alt="Визуализация метода Монте-Карло"
+          caption="Рис. 2 — Сравнение траекторий при статистическом моделировании"
+          className="mb-6"
+        />
         <div className="glass p-6 md:p-8">
           <h2 className="heading-lg mb-3">Метод Монте-Карло</h2>
           <p className="text-sm leading-relaxed text-slate-600">
